@@ -91,5 +91,5 @@ if __name__ == "__main__":
     base_url = "https://kelee.one/Tool/Loon/Plugin"
     filenames = ["NeteaseCloudMusic_remove_ads",
                  "Taobao_remove_ads",
-                 "Weixin_Official_Accounts_remove_ads"]
+                 "WexinMiniPrograms_Remove_ads"]
     process_plugins(base_url, filenames)
