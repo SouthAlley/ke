@@ -3,7 +3,7 @@ name: Download Content
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 每天运行一次（可根据需要修改）
+    - cron: '0 0 * * *'
 
 jobs:
   download:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
@@ -32,7 +32,7 @@ jobs:
           name: downloaded_content
           path: Scripts/downloaded_content
 
-      - name: Commit and push
+      - name: Commit 和 push
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
