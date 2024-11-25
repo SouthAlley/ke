@@ -29,5 +29,5 @@ if __name__ == "__main__":
     # 基础 URL
     base_url = "https://kelee.one/Tool/Loon/Plugin"
     # 动态文件名列表
-    filenames = ["plugin1", "plugin2", "plugin3"]  # 替换成实际需要的文件名
+    filenames = ["NeteaseCloudMusic_remove_ads", "Taobao_remove_ads"]  # 替换成实际需要的文件名
     download_plugins(base_url, filenames)
