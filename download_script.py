@@ -104,6 +104,15 @@ if __name__ == "__main__":
                  "XiaoHeiHe_remove_ads",
                  "FleaMarket_remove_ads",
                  "PinDuoDuo_remove_ads",
-                 "Amap_remove_ads"
+                 "Amap_remove_ads",
+                 "AliYunDrive_remove_ads",
+                 "iQiYi_Video_remove_ads",
+                 "YouKu_Video_remove_ads",
+                 "Tencent_Video_remove_ads",
+                 "Mango_Viedo_remove_ads",
+                 "Reddit_remove_ads",
+                 "DiDi_remove_ads",
+                 "Keep_remove_ads",
+                 "FC_Box_remove_ads"
                 ]
     process_plugins(base_url, filenames)
