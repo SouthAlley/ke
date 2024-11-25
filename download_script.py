@@ -113,6 +113,7 @@ if __name__ == "__main__":
                  "Reddit_remove_ads",
                  "DiDi_remove_ads",
                  "Keep_remove_ads",
-                 "FC_Box_remove_ads"
+                 "FC_Box_remove_ads",
+                 "SF-Express_remove_ads"
                 ]
     process_plugins(base_url, filenames)
