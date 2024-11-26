@@ -2,9 +2,9 @@ name: Surge
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'Plugins/*'
+  schedule:
+    - cron: '5 0 * * *'
+    
 
 permissions:
   contents: write
