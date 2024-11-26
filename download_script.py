@@ -114,6 +114,7 @@ if __name__ == "__main__":
                  "DiDi_remove_ads",
                  "Keep_remove_ads",
                  "FC_Box_remove_ads",
-                 "SF-Express_remove_ads"
+                 "SF-Express_remove_ads",
+                 "TikTok_redirect"
                 ]
     process_plugins(base_url, filenames)
