@@ -92,7 +92,7 @@ if __name__ == "__main__":
     filenames = ["NeteaseCloudMusic_remove_ads",
                  "Taobao_remove_ads",
                  "WexinMiniPrograms_Remove_ads",
-                 "Cainiao_remove_ads.plugin",
+                 "Cainiao_remove_ads",
                  "Remove_ads_by_keli",
                  "BlockAdvertisers",
                  "Tieba_remove_ads",
