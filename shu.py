@@ -11,7 +11,7 @@ session.headers.update({
 })
 
 # 设置替换的 base URL
-REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/AliYunDrive/"
+REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/"
 
 def download_file(url, output_folder="Plugins"):
     """
