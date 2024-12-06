@@ -91,7 +91,11 @@ def process_multiple_files(url_list):
 
 if __name__ == "__main__":
     url_list = [
-        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule"
+        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule",
+        "https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule",
+        "https://github.com/BiliUniverse/Redirect/releases/latest/download/BiliBili.Redirect.sgmodule",
+        "https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule",
+        
     ]
 
     # 处理所有链接
