@@ -33,7 +33,7 @@ def download_file(url, output_folder="Plugins"):
         response = session.get(url, timeout=10)
         response.raise_for_status()
         with open(file_path, "wb") as file:
-            文件。write(response.content)
+            file.write(response.content)
         print(f"Downloaded: {file_path}")
         return file_path
     except requests.RequestException as e:
