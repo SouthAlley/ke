@@ -15,18 +15,13 @@ REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts
 
 def download_file(url, output_folder="Plugins"):
     """
-    下载单个文件到指定文件夹，并使用提取的命名规则重新命名文件，返回文件路径。
+    下载单个文件到指定文件夹，并使用原始文件名保存，不添加前缀或其他修改，返回文件路径。
     """
     os.makedirs(output_folder, exist_ok=True)
     parsed_url = urlparse(url)
-    path_parts = parsed_url.path.strip('/').split('/')
     
-    if len(path_parts) < 2:
-        print(f"Invalid URL structure: {url}")
-        return None
-    
-    prefix = path_parts[1]
-    file_name = f"{prefix}_{os.path.basename(parsed_url.path)}"  # 重新命名文件为 prefix_文件名
+    # 获取文件名，不添加任何前缀
+    file_name = os.path.basename(parsed_url.path)
     file_path = os.path.join(output_folder, file_name)
 
     try:
