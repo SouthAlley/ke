@@ -41,10 +41,25 @@ def extract_script_paths(file_path):
         print(f"Error reading file {file_path}: {e}")
     return script_paths
 
+def replace_url(url):
+    """
+    根据规则替换 URL 链接。
+    将 GitHub 文件链接替换为 raw.githubusercontent.com 格式。
+    """
+    if "github.com" in url:
+        # 替换 GitHub 链接为 raw.githubusercontent 链接
+        url_parts = url.split("/")
+        if len(url_parts) > 5:
+            new_base = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/"
+            file_name = url_parts[-1]  # 提取文件名
+            prefix = url_parts[4] if len(url_parts) > 4 else "Unknown"  # 动态提取路径关键部分
+            return f"{new_base}{prefix}.{file_name}"
+    return url  # 如果没有匹配，返回原 URL
+
 def download_js_files(script_paths, output_folder="Scripts"):
     """
     下载从 script-path 提取的 JS 文件到 Scripts 文件夹，避免重复下载。
-    文件名在原始文件名前加上路径中的关键部分作为前缀。
+    文件名在原始文件名前加上路径中的关键部分作为前缀，并替换为新的链接。
     """
     os.makedirs(output_folder, exist_ok=True)
     downloaded = set()  # 使用集合跟踪已下载的文件 URL
@@ -55,25 +70,28 @@ def download_js_files(script_paths, output_folder="Scripts"):
             continue
 
         try:
+            # 替换链接
+            new_url = replace_url(url)
+
             # 提取路径关键部分作为前缀
-            path_parts = url.split("/")
-            if len(path_parts) > 5:  # 确保路径足够长以取第二部分
-                prefix = path_parts[4]  # 用第5段 (索引4) 作为前缀
+            path_parts = new_url.split("/")
+            if len(path_parts) > 5:
+                prefix = "Global"  # 替换链接后，路径关键部分固定为 Global
             else:
-                prefix = "Unknown"  # 如果路径不足，设置默认前缀
-            
+                prefix = "Unknown"
+
             # 获取原文件名并添加前缀
-            original_file_name = os.path.basename(url)
+            original_file_name = os.path.basename(new_url)  # 使用替换后的 URL 的文件名
             new_file_name = f"{prefix}.{original_file_name}"
             file_path = os.path.join(output_folder, new_file_name)
 
             # 下载文件
-            response = session.get(url, timeout=10)
+            response = session.get(new_url, timeout=10)
             response.raise_for_status()
             with open(file_path, "wb") as file:
                 file.write(response.content)
-            print(f"Downloaded: {file_path}")
-            downloaded.add(url)
+            print(f"Downloaded: {file_path} from {new_url}")
+            downloaded.add(url)  # 跟踪下载的原始 URL
         except requests.RequestException as e:
             print(f"Failed to download {url}. Error: {e}")
 
