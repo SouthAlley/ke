@@ -170,9 +170,7 @@ def process_single_file(url):
 if __name__ == "__main__":
     # 多个下载链接
     url_list = [
-        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/response.bundle.js",
-        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/another.bundle.js",
-        # 继续添加其他链接...
+        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule"
     ]
 
     # 处理所有链接，只替换本地下载的 .sgmodule 文件
