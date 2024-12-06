@@ -13,20 +13,23 @@ session.headers.update({
 # 设置替换的 base URL
 REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/"
 
-def download_file(url, output_folder="Plugins"):
+def download_file(url, output_folder="Plugins", is_js=False):
     """
-    下载单个文件到指定文件夹，生成新的文件名，并返回文件路径。
+    下载单个文件到指定文件夹。
+    如果是 JS 文件，使用提取的前缀命名；如果是 .sgmodule 文件，保持原名不变。
     """
     os.makedirs(output_folder, exist_ok=True)
     parsed_url = urlparse(url)
     path_parts = parsed_url.path.strip('/').split('/')
     
-    if len(path_parts) < 2:
-        print(f"Invalid URL structure: {url}")
-        return None
-    
-    prefix = path_parts[1]
-    file_name = f"{prefix}.{os.path.basename(parsed_url.path)}"  # 重新命名文件为 prefix.文件名
+    # 对于 .sgmodule 文件，保持原名
+    if not is_js:
+        file_name = os.path.basename(parsed_url.path)
+    else:
+        # 对于 JS 文件，从 URL 提取前缀部分
+        prefix = path_parts[1]  # 提取前缀部分
+        file_name = f"{prefix}.{os.path.basename(parsed_url.path)}"  # 生成前缀文件名
+
     file_path = os.path.join(output_folder, file_name)
 
     try:
@@ -95,7 +98,7 @@ def download_js_files(script_paths, output_folder="Scripts"):
         futures = {}
         for url in script_paths:
             if url not in downloaded:
-                futures[executor.submit(download_file, url, output_folder)] = url
+                futures[executor.submit(download_file, url, output_folder, is_js=True)] = url
                 downloaded.add(url)
 
         for future in as_completed(futures):
@@ -131,7 +134,7 @@ def process_single_file(url):
     print(f"\nProcessing URL: {url}")
 
     # Step 1: 下载 .sgmodule 文件
-    sgmodule_file = download_file(url)
+    sgmodule_file = download_file(url, is_js=False)
 
     if sgmodule_file:
         # Step 2: 提取 script-path
