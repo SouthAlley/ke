@@ -21,7 +21,7 @@ def download_file(url, output_folder="Plugins"):
     # 从 URL 中提取 "Enhanced" 和文件名
     parsed_url = urlparse(url)
     path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
-    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
+    prefix = path_parts[1]  # 获取 URL 路径中的第二部分作为前缀（例如 'Enhanced'）
     base_name = os.path.basename(parsed_url.path)  # 提取文件名部分
     custom_filename = f"{prefix}.{base_name}"  # 拼接文件名前缀
 
@@ -59,7 +59,7 @@ def save_js_with_custom_name(url, output_folder="Scripts"):
     # 从 URL 中提取 "Enhanced" 和文件名
     parsed_url = urlparse(url)
     path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
-    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
+    prefix = path_parts[1]  # 获取 URL 路径中的第二部分作为前缀（例如 'Enhanced'）
     js_filename = os.path.basename(url)  # 提取原文件名
     custom_filename = f"{prefix}.{js_filename}"  # 拼接 Enhanced 和文件名
     file_path = os.path.join(output_folder, custom_filename)
@@ -124,6 +124,31 @@ def download_js_files(script_paths, output_folder="Scripts"):
 
     return downloaded_files
 
+def process_single_file(url):
+    """
+    处理单个 .sgmodule 文件的下载、JS 提取、替换和保存过程，仅替换本地文件。
+    """
+    print(f"\nProcessing URL: {url}")
+
+    # 下载 .sgmodule 文件
+    sgmodule_file = download_file(url)
+    if sgmodule_file:
+        # 提取 script-path
+        print("\nExtracting script paths...")
+        script_paths = extract_script_paths(sgmodule_file)
+        if script_paths:
+            print(f"Found script paths: {script_paths}")
+            # 下载 JS 文件并保存为自定义文件名
+            print("\nDownloading JS files...")
+            downloaded_js_files = download_js_files(script_paths)
+
+            # 替换本地下载的 .sgmodule 文件中的 script-path
+            if downloaded_js_files:
+                print("\nReplacing script paths in the .sgmodule file...")
+                replace_script_paths(sgmodule_file, script_paths, downloaded_js_files)
+        else:
+            print("No script-path URLs found in the .sgmodule file.")
+
 def process_multiple_files(url_list):
     """
     处理多个 .sgmodule 文件链接，只替换本地下载的 .sgmodule 文件。
@@ -138,34 +163,6 @@ def process_multiple_files(url_list):
                 future.result()  # 获取每个任务的执行结果
             except Exception as e:
                 print(f"Error processing file from URL {futures[future]}: {e}")
-
-def process_single_file(url):
-    """
-    处理单个 .sgmodule 文件的下载、JS 提取、替换和保存过程，仅替换本地文件。
-    """
-    print(f"\nProcessing URL: {url}")
-
-    # Step 1: 下载 .sgmodule 文件
-    sgmodule_file = download_file(url)
-
-    if sgmodule_file:
-        # Step 2: 提取 script-path
-        print("\nExtracting script paths...")
-        script_paths = extract_script_paths(sgmodule_file)
-
-        if script_paths:
-            print(f"Found script paths: {script_paths}")
-
-            # Step 3: 下载提取到的 JS 文件，并保存为自定义文件名
-            print("\nDownloading JS files...")
-            downloaded_js_files = download_js_files(script_paths)
-
-            # Step 4: 替换本地下载的 .sgmodule 文件中的 script-path
-            if downloaded_js_files:
-                print("\nReplacing script paths in the .sgmodule file...")
-                replace_script_paths(sgmodule_file, script_paths, downloaded_js_files)
-        else:
-            print("No script-path URLs found in the .sgmodule file.")
 
 if __name__ == "__main__":
     # 多个下载链接
