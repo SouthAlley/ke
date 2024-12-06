@@ -101,7 +101,15 @@ def download_js_files(script_paths, output_folder="Scripts"):
             except Exception as e:
                 print(f"Failed to download {url}: {e}")
 
-    return downloaded_files
+    # 重命名文件，确保 JS 文件名格式为 prefix_filename
+    renamed_files = []
+    for file in downloaded_files:
+        prefix = file.split('_')[0]
+        new_name = f"{prefix}_{file}" if not file.startswith(prefix + "_") else file
+        os.rename(os.path.join(output_folder, file), os.path.join(output_folder, new_name))
+        renamed_files.append(new_name)
+
+    return renamed_files
 
 def process_multiple_files(url_list):
     """
