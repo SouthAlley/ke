@@ -70,8 +70,8 @@ def replace_script_paths(file_path, script_paths, downloaded_js_files):
                 if downloaded_file.endswith(js_filename):  # 匹配文件名
                     prefix = downloaded_file.split('_')[0]  # 获取前缀部分
                     # 如果文件名已经包含 prefix，就不再加前缀，避免重复
-                    if not downloaded_file.startswith(prefix + "_"):
-                        new_url = REPLACE_BASE_URL + f"{prefix}_{downloaded_file}"  # 生成新的 URL
+                    if not downloaded_file.startswith(prefix + "."):
+                        new_url = REPLACE_BASE_URL + f"{prefix}.{downloaded_file}"  # 生成新的 URL
                     else:
                         new_url = REPLACE_BASE_URL + downloaded_file  # 直接使用文件名，避免重复前缀
                     content = content.replace(script_path, new_url)
