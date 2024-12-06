@@ -15,7 +15,7 @@ REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts
 
 def download_file(url, output_folder="Plugins"):
     """
-    下载单个文件到指定文件夹，保持原文件名不变，返回文件路径。
+    下载单个文件到指定文件夹，生成新的文件名，并返回文件路径。
     """
     os.makedirs(output_folder, exist_ok=True)
     parsed_url = urlparse(url)
@@ -25,7 +25,8 @@ def download_file(url, output_folder="Plugins"):
         print(f"Invalid URL structure: {url}")
         return None
     
-    file_name = os.path.basename(parsed_url.path)  # 保持文件名不变
+    prefix = path_parts[1]
+    file_name = f"{prefix}.{os.path.basename(parsed_url.path)}"  # 重新命名文件为 prefix.文件名
     file_path = os.path.join(output_folder, file_name)
 
     try:
@@ -155,7 +156,7 @@ if __name__ == "__main__":
     # 多个下载链接
     url_list = [
         "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule",
-         "https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule",
+        "https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule",
         "https://github.com/BiliUniverse/Redirect/releases/latest/download/BiliBili.Redirect.sgmodule",
         "https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule",
         "https://github.com/DualSubs/YouTube/releases/latest/download/DualSubs.YouTube.sgmodule",
