@@ -33,7 +33,7 @@ def download_file(url, output_folder="Plugins"):
         response = session.get(url, timeout=10)
         response.raise_for_status()
         with open(file_path, "wb") as file:
-            file.write(response.content)
+            文件。write(response.content)
         print(f"Downloaded: {file_path}")
         return file_path
     except requests.RequestException as e:
@@ -155,7 +155,14 @@ def process_single_file(url):
 if __name__ == "__main__":
     # 多个下载链接
     url_list = [
-        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule"
+        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule",
+        "https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule",
+        "https://github.com/BiliUniverse/Redirect/releases/latest/download/BiliBili.Redirect.sgmodule",
+        "https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule",
+        "https://github.com/DualSubs/YouTube/releases/latest/download/DualSubs.YouTube.sgmodule",
+        "https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.sgmodule",
+        "https://github.com/NSRingo/GeoServices/releases/latest/download/Location.sgmodule",
+        "https://github.com/NSRingo/GeoServices/releases/latest/download/Maps.sgmodule",
     ]
 
     # 处理所有链接，只替换本地下载的 .sgmodule 文件
