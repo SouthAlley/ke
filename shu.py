@@ -11,7 +11,7 @@ session.headers.update({
 })
 
 # 设置替换的 base URL
-REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/"
+REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/AliYunDrive/"
 
 def download_file(url, output_folder="Plugins"):
     """
@@ -21,7 +21,7 @@ def download_file(url, output_folder="Plugins"):
     # 从 URL 中提取 "Enhanced" 和文件名
     parsed_url = urlparse(url)
     path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
-    prefix = path_parts[1]  # 获取 URL 路径中的第二部分作为前缀（例如 'Enhanced'）
+    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
     base_name = os.path.basename(parsed_url.path)  # 提取文件名部分
     custom_filename = f"{prefix}.{base_name}"  # 拼接文件名前缀
 
@@ -59,7 +59,7 @@ def save_js_with_custom_name(url, output_folder="Scripts"):
     # 从 URL 中提取 "Enhanced" 和文件名
     parsed_url = urlparse(url)
     path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
-    prefix = path_parts[1]  # 获取 URL 路径中的第二部分作为前缀（例如 'Enhanced'）
+    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
     js_filename = os.path.basename(url)  # 提取原文件名
     custom_filename = f"{prefix}.{js_filename}"  # 拼接 Enhanced 和文件名
     file_path = os.path.join(output_folder, custom_filename)
@@ -83,12 +83,14 @@ def replace_script_paths(file_path, script_paths, downloaded_js_files):
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
 
-        # 遍历提取到的 script-path 替换为新 URL
+        # 遍历提取到的 script-path，替换为新 URL
         for script_path in script_paths:
-            js_filename = os.path.basename(script_path)
+            js_filename = os.path.basename(script_path)  # 获取原始文件名
             if js_filename in downloaded_js_files:
-                # 创建新的 URL 替换路径
-                new_url = REPLACE_BASE_URL + js_filename
+                # 获取下载的 JS 文件的自定义文件名
+                custom_filename = downloaded_js_files[js_filename]
+                # 创建新的 URL 替换路径，使用自定义的文件名
+                new_url = REPLACE_BASE_URL + custom_filename
                 content = content.replace(script_path, new_url)
 
         # 保存更新后的文件
@@ -104,7 +106,7 @@ def download_js_files(script_paths, output_folder="Scripts"):
     """
     os.makedirs(output_folder, exist_ok=True)
     downloaded = set()  # 使用集合跟踪已下载的文件 URL
-    downloaded_files = []  # 记录下载成功的文件名
+    downloaded_files = {}  # 记录下载成功的文件名
 
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {}
@@ -118,36 +120,11 @@ def download_js_files(script_paths, output_folder="Scripts"):
             try:
                 custom_filename = future.result()
                 if custom_filename:
-                    downloaded_files.append(custom_filename)
+                    downloaded_files[url] = custom_filename  # 保存自定义文件名
             except Exception as e:
                 print(f"Failed to download {url}: {e}")
 
     return downloaded_files
-
-def process_single_file(url):
-    """
-    处理单个 .sgmodule 文件的下载、JS 提取、替换和保存过程，仅替换本地文件。
-    """
-    print(f"\nProcessing URL: {url}")
-
-    # 下载 .sgmodule 文件
-    sgmodule_file = download_file(url)
-    if sgmodule_file:
-        # 提取 script-path
-        print("\nExtracting script paths...")
-        script_paths = extract_script_paths(sgmodule_file)
-        if script_paths:
-            print(f"Found script paths: {script_paths}")
-            # 下载 JS 文件并保存为自定义文件名
-            print("\nDownloading JS files...")
-            downloaded_js_files = download_js_files(script_paths)
-
-            # 替换本地下载的 .sgmodule 文件中的 script-path
-            if downloaded_js_files:
-                print("\nReplacing script paths in the .sgmodule file...")
-                replace_script_paths(sgmodule_file, script_paths, downloaded_js_files)
-        else:
-            print("No script-path URLs found in the .sgmodule file.")
 
 def process_multiple_files(url_list):
     """
@@ -164,10 +141,40 @@ def process_multiple_files(url_list):
             except Exception as e:
                 print(f"Error processing file from URL {futures[future]}: {e}")
 
+def process_single_file(url):
+    """
+    处理单个 .sgmodule 文件的下载、JS 提取、替换和保存过程，仅替换本地文件。
+    """
+    print(f"\nProcessing URL: {url}")
+
+    # Step 1: 下载 .sgmodule 文件
+    sgmodule_file = download_file(url)
+
+    if sgmodule_file:
+        # Step 2: 提取 script-path
+        print("\nExtracting script paths...")
+        script_paths = extract_script_paths(sgmodule_file)
+
+        if script_paths:
+            print(f"Found script paths: {script_paths}")
+
+            # Step 3: 下载提取到的 JS 文件，并保存为自定义文件名
+            print("\nDownloading JS files...")
+            downloaded_js_files = download_js_files(script_paths)
+
+            # Step 4: 替换本地下载的 .sgmodule 文件中的 script-path
+            if downloaded_js_files:
+                print("\nReplacing script paths in the .sgmodule file...")
+                replace_script_paths(sgmodule_file, script_paths, downloaded_js_files)
+        else:
+            print("No script-path URLs found in the .sgmodule file.")
+
 if __name__ == "__main__":
     # 多个下载链接
     url_list = [
-        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule"
+        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/response.bundle.js",
+        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/another.bundle.js",
+        # 继续添加其他链接...
     ]
 
     # 处理所有链接，只替换本地下载的 .sgmodule 文件
