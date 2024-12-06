@@ -26,7 +26,7 @@ def download_file(url, output_folder="Plugins"):
         return None
     
     prefix = path_parts[1]
-    file_name = f"{prefix}_{os.path.basename(parsed_url.path)}"  # 重新命名文件为 prefix_文件名
+    file_name = f"{prefix}.{os.path.basename(parsed_url.path)}"  # 重新命名文件为 prefix.文件名
     file_path = os.path.join(output_folder, file_name)
 
     try:
@@ -68,7 +68,7 @@ def replace_script_paths(file_path, script_paths, downloaded_js_files):
             # 查找本地对应的文件
             for downloaded_file in downloaded_js_files:
                 if downloaded_file.endswith(js_filename):  # 匹配文件名
-                    prefix = downloaded_file.split('_')[0]  # 获取前缀部分
+                    prefix = downloaded_file.split('.')[0]  # 获取前缀部分
                     # 如果文件名已经包含 prefix，就不再加前缀，避免重复
                     if not downloaded_file.startswith(prefix + "."):
                         new_url = REPLACE_BASE_URL + f"{prefix}.{downloaded_file}"  # 生成新的 URL
