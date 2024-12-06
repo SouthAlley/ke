@@ -162,7 +162,7 @@ if __name__ == "__main__":
         "https://github.com/DualSubs/YouTube/releases/latest/download/DualSubs.YouTube.sgmodule",
         "https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.sgmodule",
         "https://github.com/NSRingo/GeoServices/releases/latest/download/Location.sgmodule",
-        "https://github.com/NSRingo/GeoServices/releases/latest/download/Maps.sgmodule",
+        "https://github.com/NSRingo/GeoServices/releases/latest/download/Maps.sgmodule"
     ]
 
     # 处理所有链接，只替换本地下载的 .sgmodule 文件
