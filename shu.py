@@ -44,6 +44,7 @@ def extract_script_paths(file_path):
 def download_js_files(script_paths, output_folder="Scripts"):
     """
     下载从 script-path 提取的 JS 文件到 Scripts 文件夹，避免重复下载。
+    文件名在原始文件名前加上路径中的关键部分作为前缀。
     """
     os.makedirs(output_folder, exist_ok=True)
     downloaded = set()  # 使用集合跟踪已下载的文件 URL
@@ -54,10 +55,21 @@ def download_js_files(script_paths, output_folder="Scripts"):
             continue
 
         try:
+            # 提取路径关键部分作为前缀
+            path_parts = url.split("/")
+            if len(path_parts) > 5:  # 确保路径足够长以取第二部分
+                prefix = path_parts[4]  # 用第5段 (索引4) 作为前缀
+            else:
+                prefix = "Unknown"  # 如果路径不足，设置默认前缀
+            
+            # 获取原文件名并添加前缀
+            original_file_name = os.path.basename(url)
+            new_file_name = f"{prefix}.{original_file_name}"
+            file_path = os.path.join(output_folder, new_file_name)
+
+            # 下载文件
             response = session.get(url, timeout=10)
             response.raise_for_status()
-            file_name = os.path.basename(url)
-            file_path = os.path.join(output_folder, file_name)
             with open(file_path, "wb") as file:
                 file.write(response.content)
             print(f"Downloaded: {file_path}")
@@ -95,7 +107,6 @@ if __name__ == "__main__":
         "https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule",
         "https://github.com/BiliUniverse/Redirect/releases/latest/download/BiliBili.Redirect.sgmodule",
         "https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule",
-        
     ]
 
     # 处理所有链接
