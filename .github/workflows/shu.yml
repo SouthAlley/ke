@@ -2,8 +2,6 @@ name: shu
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '10 0 * * *'
 
 jobs:
   download:
