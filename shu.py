@@ -2,6 +2,7 @@ import os
 import re
 import requests
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import urlparse
 
 # 创建一个全局的 requests.Session
 session = requests.Session()
@@ -10,22 +11,28 @@ session.headers.update({
 })
 
 # 设置替换的 base URL
-REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/"
+REPLACE_BASE_URL = "https://raw.githubusercontent.com/SouthAlley/ke/main/Scripts/AliYunDrive/"
 
 def download_file(url, output_folder="Plugins"):
     """
     下载单个文件到指定文件夹，返回文件路径。
     """
     os.makedirs(output_folder, exist_ok=True)
-    file_name = os.path.basename(url)  # 从 URL 提取文件名
-    file_path = os.path.join(output_folder, file_name)
+    # 从 URL 中提取 "Enhanced" 和文件名
+    parsed_url = urlparse(url)
+    path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
+    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
+    base_name = os.path.basename(parsed_url.path)  # 提取文件名部分
+    custom_filename = f"{prefix}.{base_name}"  # 拼接文件名前缀
+
+    file_path = os.path.join(output_folder, custom_filename)
 
     try:
         response = session.get(url, timeout=10)
         response.raise_for_status()
         with open(file_path, "wb") as file:
             file.write(response.content)
-        print(f"Downloaded: {file_path}")
+        print(f"Downloaded and saved as: {file_path}")
         return file_path
     except requests.RequestException as e:
         print(f"Failed to download {url}. Error: {e}")
@@ -44,6 +51,29 @@ def extract_script_paths(file_path):
     except Exception as e:
         print(f"Error reading file {file_path}: {e}")
     return script_paths
+
+def save_js_with_custom_name(url, output_folder="Scripts"):
+    """
+    下载 JS 文件并保存为自定义命名，使用从 URL 中提取的前缀和文件名。
+    """
+    # 从 URL 中提取 "Enhanced" 和文件名
+    parsed_url = urlparse(url)
+    path_parts = parsed_url.path.strip('/').split('/')  # 分割 URL 路径
+    prefix = path_parts[1]  # 获取 URL 路径中的第二个部分作为前缀（例如 'Enhanced'）
+    js_filename = os.path.basename(url)  # 提取原文件名
+    custom_filename = f"{prefix}.{js_filename}"  # 拼接 Enhanced 和文件名
+    file_path = os.path.join(output_folder, custom_filename)
+
+    try:
+        response = session.get(url, timeout=10)
+        response.raise_for_status()
+        with open(file_path, "wb") as file:
+            file.write(response.content)
+        print(f"Downloaded and saved as: {file_path}")
+        return custom_filename  # 返回自定义的文件名
+    except requests.RequestException as e:
+        print(f"Failed to download {url}. Error: {e}")
+        return None
 
 def replace_script_paths(file_path, script_paths, downloaded_js_files):
     """
@@ -80,15 +110,15 @@ def download_js_files(script_paths, output_folder="Scripts"):
         futures = {}
         for url in script_paths:
             if url not in downloaded:
-                futures[executor.submit(download_file, url, output_folder)] = url
+                futures[executor.submit(save_js_with_custom_name, url, output_folder)] = url
                 downloaded.add(url)
 
         for future in as_completed(futures):
             url = futures[future]
             try:
-                file_path = future.result()
-                if file_path:
-                    downloaded_files.append(os.path.basename(file_path))
+                custom_filename = future.result()
+                if custom_filename:
+                    downloaded_files.append(custom_filename)
             except Exception as e:
                 print(f"Failed to download {url}: {e}")
 
@@ -126,7 +156,7 @@ def process_single_file(url):
         if script_paths:
             print(f"Found script paths: {script_paths}")
 
-            # Step 3: 下载提取到的 JS 文件
+            # Step 3: 下载提取到的 JS 文件，并保存为自定义文件名
             print("\nDownloading JS files...")
             downloaded_js_files = download_js_files(script_paths)
 
@@ -140,7 +170,9 @@ def process_single_file(url):
 if __name__ == "__main__":
     # 多个下载链接
     url_list = [
-        "https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule"
+        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/response.bundle.js",
+        "https://github.com/BiliUniverse/Enhanced/releases/download/v0.5.9/another.bundle.js",
+        # 继续添加其他链接...
     ]
 
     # 处理所有链接，只替换本地下载的 .sgmodule 文件
