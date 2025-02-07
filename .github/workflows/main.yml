@@ -26,11 +26,6 @@ jobs:
       - name: Run download script
         run: python download_script.py
 
-      - name: Upload downloaded file
-        uses: actions/upload-artifact@v4
-        with:
-          name: downloaded_content
-          path: Scripts/downloaded_content
 
       - name: Commit 和 push
         run: |
