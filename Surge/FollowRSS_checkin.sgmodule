@@ -1,6 +1,6 @@
 #!name=Follow每日签到
 #!desc=Follow每日签到，需要进入此插件的主页链接，阅读使用说明操作。
-#!author=gideonsenku[https://github.com/gideonsenku],可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
+#!author=gideonsenku[https://github.com/gideonsenku], 可莉🅥[https://github.com/luestr/ProxyResource/blob/main/README.md]
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/FollowRSS.png
 #!openUrl=https://follow.is
 #!tag=签到
@@ -10,4 +10,7 @@
 
 [Script]
 Follow每日签到 = type=cron, cronexp={cron}, script-path=https://kelee.one/Resource/Script/FollowRSS/FollowRSS_checkin.js, timeout=120, argument="[{token},{cookie}]"
+
+[MITM]
+hostname = %APPEND% api.follow.is
 
