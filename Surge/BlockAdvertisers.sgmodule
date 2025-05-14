@@ -5,7 +5,7 @@
 #!tag=去广告
 #!loon_version=3.2.4(787)
 #!homepage=https://github.com/luestr/ProxyResource/blob/main/README.md
-#!date=2025-05-13 02:29:14
+#!date=2025-05-14 02:57:41
 
 [Rule]
 AND,((DOMAIN-KEYWORD,-ad-,extended-matching),(DOMAIN-SUFFIX,byteimg.com,extended-matching)),REJECT
@@ -48,6 +48,7 @@ DOMAIN,mssdk-bu.bytedance.com,REJECT,extended-matching
 DOMAIN,toblog.ctobsnssdk.com,REJECT,extended-matching
 DOMAIN,mssdk.volces.com,REJECT,extended-matching
 DOMAIN,pangolin.snssdk.com,REJECT,extended-matching
+DOMAIN,lf-cdn-tos.bytescm.com,REJECT,extended-matching
 DOMAIN,gromore.pangolin-sdk-toutiao.com,REJECT,extended-matching
 DOMAIN,ether-pack.pangolin-sdk-toutiao.com,REJECT,extended-matching
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT,extended-matching
