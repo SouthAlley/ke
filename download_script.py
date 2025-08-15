@@ -3,7 +3,12 @@ import re
 import requests
 
 session = requests.Session()
-session.headers.update({"User-Agent": "Loon/886 CFNetwork/3826.600.41 Darwin/24.6.0"})
+session.headers.update({
+    "User-Agent": "Surge iOS/3374",
+    "Referer": "https://www.nsloon.com/",
+    "Accept": "*/*",
+    "Accept-Language": "zh-CN,zh;q=0.9",
+})
 
 def extract_plugin_urls(md_file_path):
     """
