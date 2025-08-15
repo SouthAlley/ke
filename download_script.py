@@ -2,14 +2,18 @@ import os
 import re
 import requests
 
+# 相当于 http-request header-replace User-Agent
 headers = {
     'User-Agent': 'Surge iOS/3374'
 }
 
+# 响应头模拟（Python不能直接改服务器的响应头，但可以自己加到对象上）
+response_headers_override = {
+    'Content-Disposition': 'inline',
+    'Content-Type': 'text/plain; charset=utf-8'
+}
+
 def extract_plugin_urls(md_file_path):
-    """
-    从 README.md 中提取 .plugin 文件的 URL
-    """
     try:
         with open(md_file_path, "r", encoding="utf-8") as file:
             content = file.read()
@@ -23,10 +27,17 @@ def extract_plugin_urls(md_file_path):
         print(f"解析 {md_file_path} 失败: {e}")
         return []
 
+def request_with_override(url):
+    """
+    发起请求，并模拟 http-response 规则
+    """
+    response = requests.get(url, headers=headers, timeout=5)
+    # 在返回的 response 对象中添加自定义响应头（仅本地使用）
+    for k, v in response_headers_override.items():
+        response.headers[k] = v
+    return response
+
 def download_plugins(plugin_entries):
-    """
-    下载 .plugin 文件到 Plugins 目录
-    """
     os.makedirs("Plugins", exist_ok=True)
     downloaded_files = []
 
@@ -35,11 +46,11 @@ def download_plugins(plugin_entries):
         file_path = os.path.join("Plugins", filename)
 
         try:
-            response = requests.get(url, headers=headers, timeout=5)
+            response = request_with_override(url)
             response.raise_for_status()
             with open(file_path, "wb") as file:
                 file.write(response.content)
-            print(f"插件下载成功: {file_path}")
+            print(f"插件下载成功: {file_path} (模拟响应头: {response_headers_override})")
             downloaded_files.append(file_path)
         except requests.RequestException as e:
             print(f"插件 {title} 下载失败: {e}")
@@ -47,9 +58,6 @@ def download_plugins(plugin_entries):
     return downloaded_files
 
 def extract_script_paths(file_path):
-    """
-    从 .plugin 文件中提取 script-path 的 URL
-    """
     script_paths = []
     try:
         with open(file_path, "r", encoding="utf-8") as file:
@@ -61,9 +69,6 @@ def extract_script_paths(file_path):
     return script_paths
 
 def download_js_files(script_paths, output_folder="Scripts"):
-    """
-    下载 script-path 对应的 JS 文件
-    """
     os.makedirs(output_folder, exist_ok=True)
     downloaded = set()
 
@@ -73,21 +78,18 @@ def download_js_files(script_paths, output_folder="Scripts"):
             continue
 
         try:
-            response = requests.get(url, headers=headers, timeout=5)
+            response = request_with_override(url)
             response.raise_for_status()
             file_name = os.path.basename(url)
             file_path = os.path.join(output_folder, file_name)
             with open(file_path, "wb") as file:
                 file.write(response.content)
-            print(f"JS 文件下载成功: {file_path}")
+            print(f"JS 文件下载成功: {file_path} (模拟响应头: {response_headers_override})")
             downloaded.add(url)
         except requests.RequestException as e:
             print(f"JS 文件 {url} 下载失败: {e}")
 
 def process_plugins_from_local_readme(readme_path="README.md"):
-    """
-    直接从本地 README.md 开始处理
-    """
     print("步骤 1: 提取 .plugin 文件 URL")
     plugin_entries = extract_plugin_urls(readme_path)
 
