@@ -2,9 +2,8 @@ import os
 import re
 import requests
 
-# 创建会话并统一设置 User-Agent
 session = requests.Session()
-session.headers.update({"User-Agent": "Surge iOS/3374"})
+session.headers.update({"User-Agent": "Loon/886 CFNetwork/3826.600.41 Darwin/24.6.0"})
 
 def extract_plugin_urls(md_file_path):
     """
@@ -35,7 +34,7 @@ def download_plugins(plugin_entries):
         file_path = os.path.join("Plugins", filename)
 
         try:
-            response = session.get(url, timeout=5)  # 使用统一 UA
+            response = session.get(url, timeout=5)
             response.raise_for_status()
             with open(file_path, "wb") as file:
                 file.write(response.content)
@@ -73,7 +72,7 @@ def download_js_files(script_paths, output_folder="Scripts"):
             continue
 
         try:
-            response = session.get(url, timeout=5)  # 使用统一 UA
+            response = session.get(url, timeout=5)
             response.raise_for_status()
             file_name = os.path.basename(url)
             file_path = os.path.join(output_folder, file_name)
