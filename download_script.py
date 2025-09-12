@@ -2,18 +2,23 @@ import os
 import re
 import requests
 
-# 修改 headers，添加 Referer 来应对服务器的防盗链检查
+# 修改 headers，使用正确的 Referer 来通过防盗链检查
 headers = {
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
     "connection": "keep-alive",
-    # 关键：添加 Referer 头，伪装成是从主站过来的请求
-    "Referer": "https://kelee.one/", 
-    # 保持能解决部分 403 问题的 User-Agent
+    # 关键：Referer 必须是资源的“来源”站点，这里是 nsloon.com
+    "Referer": "https://www.nsloon.com/", 
     "user-agent": "Surge iOS/3374"
 }
 
 
 def download_file(url, file_path):
+    """
+    一个健壮的、可重用的文件下载函数。
+    - 使用预设的 headers。
+    - 包含详细的错误处理。
+    - 返回 True 表示成功，False 表示失败。
+    """
     print(f"  -> 正在尝试下载: {url}")
     try:
         response = requests.get(url, headers=headers, timeout=10)
@@ -25,7 +30,6 @@ def download_file(url, file_path):
         return True
 
     except requests.exceptions.HTTPError as e:
-        # 特别处理 403 错误，给出更具体的提示
         if e.response.status_code == 403:
              print(f"❌ 下载失败 (HTTP 403 Forbidden): 服务器拒绝了请求。请检查 headers (特别是 User-Agent 和 Referer) 是否正确。URL: {url}")
         else:
