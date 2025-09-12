@@ -2,14 +2,13 @@ import os
 import re
 import requests
 
-# 保留你指定的详细请求头
-# 这个请求头对于防止 403 Forbidden 错误至关重要
+# 修改 headers，添加 Referer 来应对服务器的防盗链检查
 headers = {
-    # 'accept-encoding' requests库会自动处理，通常无需手动设置
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
-    # 'content-type' 通常在POST请求中指定，对于GET请求不是必需的
     "connection": "keep-alive",
-    # 解决 403 错误的关键 User-Agent
+    # 关键：添加 Referer 头，伪装成是从主站过来的请求
+    "Referer": "https://kelee.one/", 
+    # 保持能解决部分 403 问题的 User-Agent
     "user-agent": "Surge iOS/3374"
 }
 
@@ -17,21 +16,20 @@ headers = {
 def download_file(url, file_path):
     print(f"  -> 正在尝试下载: {url}")
     try:
-        # 使用 requests.get() 发送请求，带上 headers 和 timeout
         response = requests.get(url, headers=headers, timeout=10)
-
-        # 检查HTTP响应状态码，如果不是 2xx，则会抛出 HTTPError 异常
         response.raise_for_status()
 
-        # 使用 'wb' (二进制写入) 模式保存文件，这对于任何类型的文件都是安全的
         with open(file_path, "wb") as file:
             file.write(response.content)
             
-        return True # 下载成功，返回 True
+        return True
 
-    # 捕获并处理各种可能的异常，提供更清晰的错误信息
     except requests.exceptions.HTTPError as e:
-        print(f"❌ 下载失败 (HTTP错误): {e}")
+        # 特别处理 403 错误，给出更具体的提示
+        if e.response.status_code == 403:
+             print(f"❌ 下载失败 (HTTP 403 Forbidden): 服务器拒绝了请求。请检查 headers (特别是 User-Agent 和 Referer) 是否正确。URL: {url}")
+        else:
+             print(f"❌ 下载失败 (HTTP错误): {e}")
     except requests.exceptions.ConnectionError as e:
         print(f"❌ 下载失败 (连接错误): {e}")
     except requests.exceptions.Timeout as e:
@@ -41,7 +39,7 @@ def download_file(url, file_path):
     except IOError as e:
         print(f"❌ 文件写入失败: {e}")
         
-    return False # 下载失败，返回 False
+    return False
 
 
 def extract_plugin_urls(md_file_path):
@@ -68,11 +66,9 @@ def download_plugins(plugin_entries):
         file_path = os.path.join("Plugins", filename)
         
         print(f"处理插件: {title}")
-        # 调用我们的通用下载函数
         if download_file(url, file_path):
-            print(f"✅ 插件下载成功: {file_path}") # 已移除 response_headers_override 的打印
+            print(f"✅ 插件下载成功: {file_path}")
             downloaded_files.append(file_path)
-        # 失败信息已在 download_file 函数中打印
 
     return downloaded_files
 
@@ -101,11 +97,9 @@ def download_js_files(script_paths, output_folder="Scripts"):
         file_name = os.path.basename(url)
         file_path = os.path.join(output_folder, file_name)
 
-        # 再次调用我们的通用下载函数
         if download_file(url, file_path):
-            print(f"✅ JS 文件下载成功: {file_path}") # 已移除 response_headers_override 的打印
+            print(f"✅ JS 文件下载成功: {file_path}")
             downloaded.add(url)
-        # 失败信息已在 download_file 函数中打印
 
 
 def process_plugins_from_local_readme(readme_path="README.md"):
