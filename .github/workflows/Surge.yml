@@ -1,10 +1,8 @@
 name: Surge
 
 on:
-  workflow_run:
-    workflows: ["Download Content"]
-    types:
-      - completed
+  workflow_dispatch:
+
     
 permissions:
   contents: write
