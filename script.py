@@ -9,9 +9,9 @@ def request_and_save_plugins():
         for f in fs:
             # yield f
             f=str(f)
-            plugin_link="https://raw.githubusercontent.com/SouthAlley/ke/main/Plugins/"+str(f)
+            #plugin_link="https://raw.githubusercontent.com/SouthAlley/ke/main/Plugins/"+str(f)
             # 构造请求URL
-            url = f"http://localhost:9101/file/_start_/{plugin_link}/_end_/Weibo_remove_ads.sgmodule.txt?type=loon-plugin&target=surge-module&del=true&nore=true&jqEnabled=true&sni=REJECT"
+            url = f"http://localhost:9101/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx/_end_/Weibo_remove_ads.sgmodule.txt?type=loon-plugin&target=surge-module&del=true&nore=true&jqEnabled=true&sni=REJECT"
             transfer_success = False
             retry_times=0
             while (not transfer_success) and retry_times <5:
