@@ -1,139 +1,174 @@
 import os
 import re
 import requests
+import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# 修改 headers，使用正确的 Referer 来通过防盗链检查
-headers = {
-    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
-    "connection": "keep-alive",
-    # 关键：Referer 必须是资源的“来源”站点，这里是 nsloon.com
-    "Referer": "https://www.nsloon.com/", 
-    "user-agent": "Surge iOS/3374"
+# 定义一个全局的请求头，方便复用
+HEADERS = {
+    "User-Agent": "Surge iOS/3374"
 }
-
 
 def download_file(url, file_path):
     """
-    一个健壮的、可重用的文件下载函数。
-    - 使用预设的 headers。
-    - 包含详细的错误处理。
-    - 返回 True 表示成功，False 表示失败。
+    一个健壮的、支持代理的文件下载函数。
+    
+    它会自动从环境变量 HTTP_PROXY_URL 中读取代理设置。
+    返回一个元组 (file_path, success_boolean)，表示下载的文件路径和是否成功。
     """
-    print(f"  -> 正在尝试下载: {url}")
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
+    if not url:
+        return None, False
 
+    # 1. 从环境变量中获取代理设置
+    proxy_url = os.environ.get('HTTP_PROXY_URL')
+    proxies = {
+        "http": proxy_url,
+        "https": proxy_url,
+    } if proxy_url else None
+    
+    # 调试信息：如果使用了代理，就打印出来
+    proxy_info = " (使用代理)" if proxies else ""
+
+    try:
+        # 2. 在请求中加入 proxies 参数
+        response = requests.get(url, headers=HEADERS, timeout=20, proxies=proxies)
+        response.raise_for_status()  # 如果状态码不是 2xx，则抛出 HTTPError
+
+        # 确保目录存在
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        
         with open(file_path, "wb") as file:
             file.write(response.content)
-            
-        return True
-
-    except requests.exceptions.HTTPError as e:
-        if e.response.status_code == 403:
-             print(f"❌ 下载失败 (HTTP 403 Forbidden): 服务器拒绝了请求。请检查 headers (特别是 User-Agent 和 Referer) 是否正确。URL: {url}")
-        else:
-             print(f"❌ 下载失败 (HTTP错误): {e}")
-    except requests.exceptions.ConnectionError as e:
-        print(f"❌ 下载失败 (连接错误): {e}")
-    except requests.exceptions.Timeout as e:
-        print(f"❌ 下载失败 (请求超时): {e}")
-    except requests.exceptions.RequestException as e:
-        print(f"❌ 下载失败 (未知请求错误): {e}")
-    except IOError as e:
-        print(f"❌ 文件写入失败: {e}")
+        # 返回成功下载的文件路径
+        return file_path, True
         
-    return False
+    except requests.exceptions.HTTPError as e:
+        status_code_info = f"(HTTP {e.response.status_code})" if e.response else ""
+        print(f"❌ 下载失败 {status_code_info}{proxy_info} for {url}: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ 网络请求失败{proxy_info} for {url}: {e}")
+    except IOError as e:
+        print(f"❌ 文件写入失败 for {file_path}: {e}")
+    
+    # 如果发生任何错误，返回 URL 和失败状态
+    return url, False
 
+def batch_download(urls_to_paths_map, max_workers=10):
+    """使用线程池并发下载多个文件。"""
+    successful_downloads = []
+    if not urls_to_paths_map:
+        return successful_downloads
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_url = {executor.submit(download_file, url, path): url for url, path in urls_to_paths_map.items()}
+        
+        total_files = len(urls_to_paths_map)
+        for i, future in enumerate(as_completed(future_to_url), 1):
+            url = future_to_url[future]
+            try:
+                path, success = future.result()
+                if success:
+                    print(f"✅ [{i}/{total_files}] 下载成功: {os.path.basename(path)}")
+                    successful_downloads.append(path)
+                else:
+                    # 具体的错误信息已在 download_file 中打印
+                    print(f"➖ [{i}/{total_files}] 未能下载: {url}")
+            except Exception as e:
+                print(f"❌ [{i}/{total_files}] 下载 {url} 时发生意外错误: {e}")
+    return successful_downloads
 
 def extract_plugin_urls(md_file_path):
+    """从 Markdown 文件中解析插件 URL。"""
     try:
         with open(md_file_path, "r", encoding="utf-8") as file:
             content = file.read()
-
-        pattern = re.compile(
-            r'<td><a href="https://www.nsloon.com/openloon/import\?plugin=([^"]+)">([^<]+)</a></td>'
-        )
-        results = [(title, plugin_url) for plugin_url, title in pattern.findall(content)]
-        return results
+        pattern = re.compile(r'https://www.nsloon.com/openloon/import\?plugin=([^"]+)')
+        return sorted(list(set(pattern.findall(content))))
+    except FileNotFoundError:
+        print(f"❌ 错误: 文件 '{md_file_path}' 未找到。")
+        return []
     except Exception as e:
-        print(f"解析 {md_file_path} 失败: {e}")
+        print(f"❌ 解析 {md_file_path} 失败: {e}")
         return []
 
-
-def download_plugins(plugin_entries):
-    os.makedirs("Plugins", exist_ok=True)
-    downloaded_files = []
-
-    for title, url in plugin_entries:
-        filename = os.path.basename(url)
-        file_path = os.path.join("Plugins", filename)
-        
-        print(f"处理插件: {title}")
-        if download_file(url, file_path):
-            print(f"✅ 插件下载成功: {file_path}")
-            downloaded_files.append(file_path)
-
-    return downloaded_files
-
-
-def extract_script_paths(file_path):
-    script_paths = []
+def extract_script_urls(file_path):
+    """从插件文件中解析出 script-path 的 URL。"""
     try:
-        with open(file_path, "r", encoding="utf-8") as file:
+        with open(file_path, "r", encoding="utf-8", errors='ignore') as file:
             content = file.read()
-            script_paths = re.findall(r'script-path\s*=\s*(https?://[^\s]+\.js)', content)
+        return set(re.findall(r'script-path\s*=\s*(https?://[^\s,]+\.js)', content))
     except Exception as e:
-        print(f"无法读取文件 {file_path}: {e}")
+        print(f"⚠️ 无法读取或解析 {file_path}: {e}")
+        return set()
 
-    return script_paths
+def main(args):
+    """主处理函数"""
+    # 步骤 1: 从 README 中提取 .plugin 文件的 URL
+    print(f"▶️ 步骤 1: 正在解析 '{args.readme}' 以查找插件...")
+    plugin_urls = extract_plugin_urls(args.readme)
 
-
-def download_js_files(script_paths, output_folder="Scripts"):
-    os.makedirs(output_folder, exist_ok=True)
-    downloaded = set()
-
-    for url in script_paths:
-        if url in downloaded:
-            print(f"跳过 (已下载): {url}")
-            continue
-
-        file_name = os.path.basename(url)
-        file_path = os.path.join(output_folder, file_name)
-
-        if download_file(url, file_path):
-            print(f"✅ JS 文件下载成功: {file_path}")
-            downloaded.add(url)
-
-
-def process_plugins_from_local_readme(readme_path="README.md"):
-    print("步骤 1: 提取 .plugin 文件 URL")
-    plugin_entries = extract_plugin_urls(readme_path)
-
-    if not plugin_entries:
-        print("未找到任何 .plugin 文件")
+    if not plugin_urls:
+        print("未找到任何 .plugin 文件，程序退出。")
         return
 
-    print(f"找到 {len(plugin_entries)} 个插件:")
-    for title, link in plugin_entries:
-        print(f"- {title}: {link}")
+    print(f"   找到 {len(plugin_urls)} 个插件 URL。")
 
-    print("\n步骤 2: 下载 .plugin 文件")
-    plugin_files = download_plugins(plugin_entries)
+    # 步骤 2: 并发下载所有 .plugin 文件
+    print("\n▶️ 步骤 2: 正在下载 .plugin 文件...")
+    plugins_dir = os.path.join(args.outdir, "Plugins")
+    
+    plugin_download_map = {
+        url: os.path.join(plugins_dir, os.path.basename(url))
+        for url in plugin_urls
+    }
+    downloaded_plugin_files = batch_download(plugin_download_map, max_workers=args.workers)
 
-    print("\n步骤 3: 提取 script-path 并下载 .js 文件")
-    all_script_paths = set()
+    # 步骤 3: 从所有下载的插件中提取 script-path
+    print("\n▶️ 步骤 3: 正在从已下载的插件中提取脚本 URL...")
+    all_script_urls = set()
+    for plugin_file in downloaded_plugin_files:
+        script_urls = extract_script_urls(plugin_file)
+        if script_urls:
+            all_script_urls.update(script_urls)
+    
+    if not all_script_urls:
+        print("   在所有插件中均未找到 script-path URL，程序完成。")
+        return
+        
+    print(f"   共找到 {len(all_script_urls)} 个唯一的 JS 脚本需要下载。")
 
-    for plugin_file in plugin_files:
-        script_paths = extract_script_paths(plugin_file)
-        all_script_paths.update(script_paths)
-
-    if all_script_paths:
-        print(f"\n找到 {len(all_script_paths)} 个唯一的 JS 文件 URL，准备下载...")
-        download_js_files(all_script_paths)
-    else:
-        print("在已下载的插件中未找到任何 script-path URL")
-
+    # 步骤 4: 并发下载所有唯一的 .js 文件
+    print(f"\n▶️ 步骤 4: 正在下载所有 JS 脚本...")
+    scripts_dir = os.path.join(args.outdir, "Scripts")
+    
+    script_download_map = {
+        url: os.path.join(scripts_dir, os.path.basename(url.split('?')[0])) 
+        for url in all_script_urls
+    }
+    batch_download(script_download_map, max_workers=args.workers)
+    
+    print("\n✨ 所有任务已完成。")
 
 if __name__ == "__main__":
-    process_plugins_from_local_readme("README.md")
+    parser = argparse.ArgumentParser(description="从 README.md 文件中下载 Loon 插件及其关联的 JS 脚本。")
+    parser.add_argument(
+        "--readme",
+        type=str,
+        default="README.md",
+        help="输入的 README.md 文件路径。"
+    )
+    parser.add_argument(
+        "-o", "--outdir",
+        type=str,
+        default=".",
+        help="输出目录，'Plugins' 和 'Scripts' 文件夹将被创建在这里。"
+    )
+    parser.add_argument(
+        "-w", "--workers",
+        type=int,
+        default=10,
+        help="并发下载的线程数。"
+    )
+    
+    args = parser.parse_args()
+    main(args)
