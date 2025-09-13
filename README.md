@@ -799,10 +799,6 @@
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/WPS_checkin.lpx">WPS每日签到</a></td>
   </tr>
   <tr>
-    <td>03</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://raw.githubusercontent.com/bgvioletsky/ios_rule/main/Loon/Lpx/sxmd_sign.plugin">书香门第每日签到</a></td>
-  </tr>
-  <tr>
     <td>04</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/FollowRSS_checkin.lpx">Follow每日签到</a></td>
   </tr>
