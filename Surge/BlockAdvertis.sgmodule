@@ -5,7 +5,7 @@
 #!tag=去广告, 依赖
 #!loon_version=3.2.4(787)
 #!homepage=https://hub.kelee.one
-#!date=2025-11-08 21:21:51
+#!date=2025-11-10 18:30:23
 
 [Rule]
 AND,((DOMAIN-KEYWORD,tnc),(OR,((DOMAIN-SUFFIX,capcutapi.com),(DOMAIN-SUFFIX,zijieapi.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,sgsnssdk.com)))),DIRECT
@@ -80,10 +80,9 @@ DOMAIN,miniapp-ad.cdn.bcebos.com,REJECT,extended-matching
 DOMAIN,mobads-pre-config.cdn.bcebos.com,REJECT,extended-matching
 DOMAIN-SUFFIX,union.baidu.cn,REJECT,extended-matching
 DOMAIN-SUFFIX,union.baidu.com,REJECT,extended-matching
-DOMAIN,ad.tencentmusic.com,REJECT,extended-matching
 DOMAIN,adsmind.gdtimg.com,REJECT,extended-matching
 DOMAIN,adsmind.ugdtimg.com,REJECT,extended-matching
-DOMAIN,mc.tencentmusic.com,REJECT,extended-matching
+DOMAIN,ads.privacy.qq.com,REJECT,extended-matching
 DOMAIN,c2.gdt.qq.com,REJECT,extended-matching
 DOMAIN,2fwin.gdt.qq.com,REJECT,extended-matching
 DOMAIN,huatuocode.huatuo.qq.com,REJECT,extended-matching
@@ -92,7 +91,6 @@ DOMAIN,info6.video.qq.com,REJECT,extended-matching
 DOMAIN,ios.bugly.qq.com,REJECT,extended-matching
 DOMAIN,pro.bugly.qq.com,REJECT,extended-matching
 DOMAIN,ios.video.mpush.qq.com,REJECT,extended-matching
-DOMAIN,us.l.qq.com,REJECT,extended-matching
 DOMAIN,mi.gdt.qq.com,REJECT,extended-matching
 DOMAIN,otheve.beacon.qq.com,REJECT,extended-matching
 DOMAIN,pgdt.gtimg.cn,REJECT,extended-matching
@@ -113,11 +111,19 @@ DOMAIN,win.gdt.qq.com,REJECT,extended-matching
 DOMAIN,wup.imtt.qq.com,REJECT,extended-matching
 DOMAIN,tpstelemetry.tencent.com,REJECT,extended-matching
 DOMAIN,ii.gdt.qq.com,REJECT,extended-matching
+DOMAIN,otheve.beacon.qq.com,REJECT,extended-matching
+DOMAIN,stat.y.qq.com,REJECT,extended-matching
+DOMAIN,stat6.y.qq.com,REJECT,extended-matching
+DOMAIN,oth.str.mdt.qq.com,REJECT,extended-matching
+DOMAIN,h.trace.qq.com,REJECT,extended-matching
+DOMAIN,sdk.e.qq.com,REJECT,extended-matching
+DOMAIN,tangram.e.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,ad.hunyuan.tencent.com,REJECT,extended-matching
 DOMAIN-SUFFIX,gdt.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,l.qq.com,REJECT,extended-matching
+DOMAIN-SUFFIX,imtmp.net,REJECT,extended-matching
 DOMAIN-SUFFIX,ugdtimg.com,REJECT,extended-matching
 IP-CIDR,47.110.187.87/32,REJECT,no-resolve
 DOMAIN-SUFFIX,openinstall.io,REJECT,extended-matching
