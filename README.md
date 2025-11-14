@@ -653,6 +653,10 @@
     <td>148</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Dlabel_remove_ads.lpx">Dlabel云标签去广告</a></td>
   </tr>
+  <tr>
+    <td>149</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/ValorantBible_remove_ads.lpx">Dlabel掌上无畏契约去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
