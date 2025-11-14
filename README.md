@@ -655,7 +655,19 @@
   </tr>
   <tr>
     <td>149</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/ValorantBible_remove_ads.lpx">Dlabel掌上无畏契约去广告</a></td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/ValorantBible_remove_ads.lpx">掌上无畏契约去广告</a></td>
+  </tr>
+  <tr>
+    <td>150</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/LOL_Bible_remove_ads.lpx">掌上英雄联盟去广告</a></td>
+  </tr>
+  <tr>
+    <td>151</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Taopiaopiao_remove_ads.lpx">淘票票去广告</a></td>
+  </tr>
+  <tr>
+    <td>152</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Damai_remove_ads.lpx">大麦去广告</a></td>
   </tr>
     <td></td>
     <td></td>
