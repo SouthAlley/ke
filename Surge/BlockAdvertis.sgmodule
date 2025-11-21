@@ -5,7 +5,7 @@
 #!tag=去广告, 依赖
 #!loon_version=3.2.4(787)
 #!homepage=https://hub.kelee.one
-#!date=2025-11-20 01:25:54
+#!date=2025-11-20 19:45:41
 
 [Rule]
 AND,((DOMAIN-KEYWORD,tnc),(OR,((DOMAIN-SUFFIX,capcutapi.com),(DOMAIN-SUFFIX,zijieapi.com),(DOMAIN-SUFFIX,isnssdk.com),(DOMAIN-SUFFIX,toutiaoapi.com),(DOMAIN-SUFFIX,bytedance.com),(DOMAIN-SUFFIX,snssdk.com),(DOMAIN-SUFFIX,sgsnssdk.com)))),DIRECT
@@ -120,6 +120,24 @@ DOMAIN-SUFFIX,l.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,imtmp.net,REJECT,extended-matching
 DOMAIN-SUFFIX,ugdtimg.com,REJECT,extended-matching
 IP-CIDR,47.110.187.87/32,REJECT,no-resolve
+DOMAIN-SUFFIX,opadlink.com,REJECT,extended-matching
+DOMAIN-SUFFIX,staevent.work,REJECT,extended-matching
+DOMAIN-SUFFIX,openinstall.online,REJECT,extended-matching
+DOMAIN-SUFFIX,statchannel.store,REJECT,extended-matching
+DOMAIN-SUFFIX,oplinking.com,REJECT,extended-matching
+DOMAIN-SUFFIX,deepinstall.com,REJECT,extended-matching
+DOMAIN-SUFFIX,openinstall.com,REJECT,extended-matching
+DOMAIN-SUFFIX,installtongji.top,REJECT,extended-matching
+DOMAIN-SUFFIX,openlink.cc,REJECT,extended-matching
+DOMAIN-SUFFIX,opstatistics.com,REJECT,extended-matching
+DOMAIN-SUFFIX,installtongji.online,REJECT,extended-matching
+DOMAIN-SUFFIX,statschannel.xyz,REJECT,extended-matching
+DOMAIN-SUFFIX,staevent.xyz,REJECT,extended-matching
+DOMAIN-SUFFIX,opstatistics.cn,REJECT,extended-matching
+DOMAIN-SUFFIX,openinstall.top,REJECT,extended-matching
+DOMAIN-SUFFIX,openinstall.io,REJECT,extended-matching
+DOMAIN-SUFFIX,statsinstall.xyz,REJECT,extended-matching
+DOMAIN-SUFFIX,statchannel.top,REJECT,extended-matching
 DOMAIN-SUFFIX,getui.com,REJECT,extended-matching
 DOMAIN-SUFFIX,getui.net,REJECT,extended-matching
 DOMAIN-SUFFIX,igexin.com,REJECT,extended-matching
