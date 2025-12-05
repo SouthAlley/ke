@@ -669,6 +669,10 @@
     <td>152</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Damai_remove_ads.lpx">大麦去广告</a></td>
   </tr>
+    <tr>
+    <td>153</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Dewu_remove_ads.lpx">得物去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
