@@ -669,9 +669,33 @@
     <td>152</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Damai_remove_ads.lpx">大麦去广告</a></td>
   </tr>
-    <tr>
+  <tr>
     <td>153</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/Dewu_remove_ads.lpx">得物去广告</a></td>
+  </tr>
+  <tr>
+    <td>154</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/amap.lpx">高德去广告</a></td>
+  </tr>
+  <tr>
+    <td>155</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/xiaohongshu.lpx">小红书去广告</a></td>
+  </tr>
+  <tr>
+    <td>156</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/myblockads.lpx">myblockads去广告</a></td>
+  </tr>
+  <tr>
+    <td>157</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/webpage.lpx">webpage去广告</a></td>
+  </tr>
+  <tr>
+    <td>158</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/youtube.lpx">youtube去广告</a></td>
+  </tr>
+  <tr>
+    <td>159</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/zhihu.lpx">知乎去广告</a></td>
   </tr>
     <td></td>
     <td></td>
