@@ -2,7 +2,7 @@
 #!desc=自用去广告插件, 以下app请使用单独插件: 高德地图, 哔哩哔哩, 网易云音乐, 微博, YouTube, 知乎。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-01-04 22:05
+#!date=2026-01-26 17:30
 #!loon_version=3.2.7(831)
 
 [Rule]
@@ -15,7 +15,6 @@ DOMAIN,ems.youku.com,REJECT,extended-matching
 DOMAIN,hudong.alicdn.com,REJECT,extended-matching
 DOMAIN,ossgw.alicdn.com,REJECT,extended-matching
 IP-CIDR,203.107.1.1/24,REJECT,no-resolve
-URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",REJECT,extended-matching
 # Apple
 DOMAIN,ca.iadsdk.apple.com,DIRECT
 DOMAIN-SUFFIX,advp.apple.com,REJECT,extended-matching
@@ -113,8 +112,7 @@ DOMAIN,tosv.boe.byted.org,REJECT,extended-matching
 DOMAIN,tosv.byted.org,REJECT,extended-matching
 DOMAIN,ws.tapjoyads.com,REJECT,extended-matching
 DOMAIN,www.googleadservices.com,REJECT,extended-matching
-# 海尔智家
-DOMAIN-SUFFIX,ehaier.com,REJECT,extended-matching
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"Hema4iPhone*")),REJECT
 # httpdns
 DOMAIN-KEYWORD,httpdns.,REJECT,extended-matching
 DOMAIN-KEYWORD,httpdns-,REJECT,extended-matching
@@ -201,6 +199,7 @@ DOMAIN,tmeadcomm.y.qq.com,REJECT,extended-matching
 DOMAIN,tpns.qq.com,REJECT,extended-matching
 DOMAIN,wup.imtt.qq.com,REJECT,extended-matching
 IP-CIDR,47.110.187.87/32,REJECT,no-resolve
+AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"TmallGenie*")),REJECT
 # 微信
 DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching
 DOMAIN,badjs.weixinbridge.com,REJECT,extended-matching
