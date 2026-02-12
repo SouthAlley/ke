@@ -697,6 +697,10 @@
     <td>159</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/zhihu.lpx">知乎去广告</a></td>
   </tr>
+  <tr>
+    <td>160</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/bilibili.lpx">bilibili去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
