@@ -7,7 +7,7 @@
 #!system_version=18
 #!loon_version=3.2.4(787)
 #!homepage=https://hub.kelee.one
-#!date=2026-02-22 23:55:34
+#!date=2026-02-25 19:48:36
 #!arguments=Weather.Provider:"ColorfulClouds",NextHour.Provider:"ColorfulClouds",AirQuality.Calculate.Algorithm:"EU_EAQI",API.ColorfulClouds.Token:"",API.QWeather.Host:"devapi.qweather.com",API.QWeather.Token:"",API.WAQI.Token:"",Storage:"Argument",LogLevel:"WARN"
 
 [Rule]
@@ -17,9 +17,9 @@ DOMAIN-SUFFIX,tthr.apple.com,REJECT-DROP,extended-matching
 AND,((IP-ASN,714,no-resolve),(PROTOCOL,QUIC)),REJECT-DROP
 
 [Script]
-天气可用性响应 = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.0.8/response.bundle.js, requires-body=true, argument="[{{{Weather.Provider}}},{{{NextHour.Provider}}},{{{AirQuality.Calculate.Algorithm}}},{{{API.ColorfulClouds.Token}}},{{{API.QWeather.Host}}},{{{API.QWeather.Token}}},{{{API.WAQI.Token}}},{{{Storage}}},{{{LogLevel}}}]"
+天气可用性响应 = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v1\/availability\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.0.9/response.bundle.js, requires-body=true, argument="[{{{Weather.Provider}}},{{{NextHour.Provider}}},{{{AirQuality.Calculate.Algorithm}}},{{{API.ColorfulClouds.Token}}},{{{API.QWeather.Host}}},{{{API.QWeather.Token}}},{{{API.WAQI.Token}}},{{{Storage}}},{{{LogLevel}}}]"
 
-天气响应 = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.0.8/response.bundle.js, requires-body=true, binary-body-mode=true, argument="[{{{Weather.Provider}}},{{{NextHour.Provider}}},{{{AirQuality.Calculate.Algorithm}}},{{{API.ColorfulClouds.Token}}},{{{API.QWeather.Host}}},{{{API.QWeather.Token}}},{{{API.WAQI.Token}}},{{{Storage}}},{{{LogLevel}}}]"
+天气响应 = type=http-response, pattern=^https?:\/\/weatherkit\.apple\.com\/api\/v2\/weather\/, script-path=https://github.com/NSRingo/WeatherKit/releases/download/v3.0.9/response.bundle.js, requires-body=true, binary-body-mode=true, argument="[{{{Weather.Provider}}},{{{NextHour.Provider}}},{{{AirQuality.Calculate.Algorithm}}},{{{API.ColorfulClouds.Token}}},{{{API.QWeather.Host}}},{{{API.QWeather.Token}}},{{{API.WAQI.Token}}},{{{Storage}}},{{{LogLevel}}}]"
 
 [MITM]
 hostname = %APPEND% weatherkit.apple.com
