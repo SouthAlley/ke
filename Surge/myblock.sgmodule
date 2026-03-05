@@ -2,7 +2,7 @@
 #!desc=自用去广告插件, 以下app请使用单独插件: 高德地图, 哔哩哔哩, 网易云音乐, 微博, YouTube, 知乎。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-02-14 23:25
+#!date=2026-03-05 10:00
 #!loon_version=3.2.7(831)
 
 [Rule]
@@ -55,10 +55,12 @@ DOMAIN,adservice.sigmob.cn,REJECT,extended-matching
 # 工商银行
 DOMAIN-SUFFIX,mall.icbc.com.cn,REJECT,extended-matching
 DOMAIN,pageviewp.icbc.com.cn,REJECT,extended-matching
+AND,((DOMAIN-KEYWORD,mssdk,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
 AND,((DOMAIN-KEYWORD,-misc-,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT,extended-matching
 DOMAIN-KEYWORD,ads.g.doubleclick,REJECT,extended-matching
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT,extended-matching
+DOMAIN-KEYWORD,open.douyin.com,REJECT,extended-matching
 DOMAIN-KEYWORD,pangolin-dsp-toutiao,REJECT,extended-matching
 DOMAIN-KEYWORD,pangolin-sdk-toutiao,REJECT,extended-matching
 DOMAIN-KEYWORD,pangolin.snssdk.com,REJECT,extended-matching
@@ -91,6 +93,7 @@ DOMAIN,dm.toutiao.com,REJECT,extended-matching
 DOMAIN,dsp-x.jd.com,REJECT,extended-matching
 DOMAIN,et.tanx.com,REJECT,extended-matching
 DOMAIN,gdfp.gifshow.com,REJECT,extended-matching
+DOMAIN,images.pinduoduo.com,REJECT,extended-matching
 DOMAIN,init.supersonicads.com,REJECT,extended-matching
 DOMAIN,janapi.jd.com,REJECT,extended-matching
 DOMAIN,lf-ad-ies.bytecdn.cn,REJECT,extended-matching
@@ -100,6 +103,8 @@ DOMAIN,mon.toutiao.com,REJECT,extended-matching
 DOMAIN,mon.toutiaocloud.com,REJECT,extended-matching
 DOMAIN,mon.toutiaocloud.net,REJECT,extended-matching
 DOMAIN,mon.zijieapi.com,REJECT,extended-matching
+DOMAIN,mssdk.bytedance.com,REJECT,extended-matching
+DOMAIN,mssdk.volces.com,REJECT,extended-matching
 DOMAIN,open.e.kuaishou.com,REJECT,extended-matching
 DOMAIN,open.kuaishou.com,REJECT,extended-matching
 DOMAIN,pagead2.googlesyndication-cn.com,REJECT,extended-matching
@@ -313,6 +318,8 @@ http-response-jq ^https:\/\/shop-api\.retail\.mi\.com\/mtop\/mf\/usercenter\/per
 ^https:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf_\d+\.json data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 ^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(?:brandcpt-vedio|waimai-alita)\/\w+\.zip$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/nebulafile\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 # 太平洋寿险 //a.cpiccdn.com
 ^https:\/\/a\.cpiccdn\.com\/config-center\/api\/configfile\/images\/\d{8}\/\d{13}_(?:(?:630|945|1035)_\d{2,4}|123_48|136_136|207_210|408_408|750_750|1125_\d{4})\.(gif|jpg|png)$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
