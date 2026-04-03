@@ -2,7 +2,7 @@
 #!desc=自用去广告插件, 以下app请使用单独插件: 高德地图, 哔哩哔哩, 网易云音乐, 微博, YouTube, 知乎。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-03-17 21:20
+#!date=2026-04-02 20:20
 #!loon_version=3.2.7(831)
 
 [Rule]
@@ -184,11 +184,15 @@ DOMAIN,id.hadron.ad.gt,REJECT,extended-matching
 # 腾讯
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching
+DOMAIN-SUFFIX,gdtimg.com,REJECT,extended-matching
+DOMAIN-SUFFIX,ugdtimg.com,REJECT,extended-matching
 DOMAIN-SUFFIX,gdt.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,l.qq.com,REJECT,extended-matching
+DOMAIN,ad.tencentvideo.com,REJECT,extended-matching
 DOMAIN,adsmind.gdtimg.com,REJECT,extended-matching
+DOMAIN,adstats.tencentvideo.com,REJECT,extended-matching
 DOMAIN,huatuocode.huatuo.qq.com,REJECT,extended-matching
-DOMAIN,info4.video.qq.com,REJECT,extended-matching
+#DOMAIN, info4.video.qq.com, REJECT
 DOMAIN,info6.video.qq.com,REJECT,extended-matching
 DOMAIN,ios.bugly.qq.com,REJECT,extended-matching
 DOMAIN,ios.video.mpush.qq.com,REJECT,extended-matching
