@@ -707,7 +707,7 @@
   </tr>
     <tr>
     <td>162</td>
-    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/NarwelRobots_remove_ads.Ipx">云鲸智能去广告</a></td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/NarwelRobots_remove_ads.lpx">云鲸智能去广告</a></td>
   </tr>
     <tr>
     <td>163</td>
@@ -717,8 +717,8 @@
     <td>164</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/TXDocs_remove_ads.lpx">腾讯文档去广告</a></td>
   </tr>
-      <tr>
-    <td>165</td>
+    <tr>
+    <td>160</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/KuGouYouth_remove_ads.lpx">酷狗概念版去广告</a></td>
   </tr>
     <td></td>
