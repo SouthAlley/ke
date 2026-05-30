@@ -705,6 +705,22 @@
     <td>161</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/PerfectWorldEsport_remove_ads.lpx">完美世界平台去广告</a></td>
   </tr>
+    <tr>
+    <td>162</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/NarwelRobots_remove_ads.Ipx">云鲸智能去广告</a></td>
+  </tr>
+    <tr>
+    <td>163</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/VideoGo_remove_ads.lpx">萤石云视频去广告</a></td>
+  </tr>
+    <tr>
+    <td>164</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/TXDocs_remove_ads.lpx">腾讯文档去广告</a></td>
+  </tr>
+      <tr>
+    <td>165</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/KuGouYouth_remove_ads.lpx">酷狗概念版去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
