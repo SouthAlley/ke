@@ -701,6 +701,10 @@
     <td>160</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://rucu6.pages.dev/Plugins/bilibili.lpx">bilibili去广告</a></td>
   </tr>
+    <tr>
+    <td>161</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/PerfectWorldEsport_remove_ads.lpx">完美世界平台去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
