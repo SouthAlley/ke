@@ -2,7 +2,7 @@
 #!desc=自用去广告插件, 以下app请使用单独插件: 高德地图, 哔哩哔哩, 网易云音乐, 微博, YouTube, 知乎。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-05-27 06:50
+#!date=2026-06-06 12:55
 #!loon_version=3.4.0(962)
 
 [Rule]
@@ -76,12 +76,14 @@ DOMAIN-SUFFIX,applvn.com,REJECT,extended-matching
 DOMAIN-SUFFIX,appsflyer.com,REJECT,extended-matching
 DOMAIN-SUFFIX,appsflyersdk.com,REJECT,extended-matching
 DOMAIN-SUFFIX,kuaishouzt.com,REJECT,extended-matching
+DOMAIN-SUFFIX,mdt.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,miaozhen.com,REJECT,extended-matching
 DOMAIN-SUFFIX,ubixioe.com,REJECT,extended-matching
 DOMAIN-SUFFIX,unityads.unity3d.com,REJECT,extended-matching
 DOMAIN-SUFFIX,v.smtcdns.com,REJECT,extended-matching
 DOMAIN,ad.zijieapi.com,REJECT,extended-matching
 DOMAIN,adapi.izuiyou.com,REJECT,extended-matching
+DOMAIN,adcdn6.tencentmusic.com,REJECT,extended-matching
 DOMAIN,adsmartget.guangtuikeji.com,REJECT,extended-matching
 DOMAIN,adtracker.adfunlink.com,REJECT,extended-matching
 DOMAIN,alphas.adxvip.com,REJECT,extended-matching
@@ -105,6 +107,7 @@ DOMAIN,mon.toutiaocloud.net,REJECT,extended-matching
 DOMAIN,mon.zijieapi.com,REJECT,extended-matching
 DOMAIN,mssdk.bytedance.com,REJECT,extended-matching
 DOMAIN,mssdk.volces.com,REJECT,extended-matching
+DOMAIN,music.y.qq.com,REJECT,extended-matching
 DOMAIN,open.e.kuaishou.com,REJECT,extended-matching
 DOMAIN,open.kuaishou.com,REJECT,extended-matching
 DOMAIN,pagead2.googlesyndication-cn.com,REJECT,extended-matching
