@@ -2,7 +2,7 @@
 #!desc=移除网页广告。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/webpage.png
-#!date=2026-05-19 20:50
+#!date=2026-06-10 12:10
 #!loon_version=3.4.0(962)
 
 [URL Rewrite]
@@ -32,10 +32,10 @@ baidu_home = type=http-response, pattern=^https:\/\/(?:www|m)\.baidu\.com(\/|\/\
 
 baidu_zhidao = type=http-response, pattern=^https:\/\/zhidao\.baidu\.com\/(?:question|index|\?fr|\?word), script-path=https://rucu6.pages.dev/Scripts/webpage/baidu-zhidao.js, requires-body=true, timeout=10
 
-# 移花宫 //*.1111071.xyz, *.1111072.xyz, *.1111073.xyz
-yihuagong_hash_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107[123]\.xyz\/hash\/(?:[a-fA-F0-9]{40}|[A-Z2-7]{32})\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
+# 移花宫 //*.111107?.xyz
+yihuagong_hash_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107\d\.xyz\/hash\/(?:[a-fA-F0-9]{40}|[A-Z2-7]{32})\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
 
-yihuagong_search_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107[123]\.xyz\/search-.*-\d-\d-\d\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
+yihuagong_search_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107\d\.xyz\/search-.*-\d-\d-\d\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
 
 # 黑料网 //18hlw.com, 8olbt.imsatcmn.cc
 18hlw_web_ads = type=http-response, pattern=^https:\/\/(?:18hlw\.com|8olbt\.imsatcmn\.cc)\/, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
@@ -59,5 +59,5 @@ javdb_web_ads = type=http-response, pattern=^https:\/\/javdb\.com\/(?!over18\?),
 missav_web_ads = type=http-response, pattern=^https:\/\/missav\.(?:ai|ws)\/(?!favicon)(?!(build|fonts|img|js|api|cdn-cgi)\/)., script-path=https://rucu6.pages.dev/Scripts/webpage/missav.js, requires-body=true, timeout=10
 
 [MITM]
-hostname = %APPEND% *.google.cn, asserts.avple.tv, kelee.one, rule.kelee.one, e-hentai.org, exhentai.org, *.pornhub.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, *.1111071.xyz, *.1111072.xyz, *.1111073.xyz, 18hlw.com, 8olbt.imsatcmn.cc, miniapp2.52ywy.com, *.zimuquan*.top, *.zimuquan*.uk, *.zimuquan*.com, hanime1.me, javdb.com, missav.ai, missav.ws
+hostname = %APPEND% *.google.cn, asserts.avple.tv, kelee.one, rule.kelee.one, e-hentai.org, exhentai.org, *.pornhub.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, *.111107?.xyz, 18hlw.com, 8olbt.imsatcmn.cc, miniapp2.52ywy.com, *.zimuquan*.top, *.zimuquan*.uk, *.zimuquan*.com, hanime1.me, javdb.com, missav.ai, missav.ws
 
