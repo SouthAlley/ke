@@ -2,7 +2,7 @@
 #!desc=移除网页广告。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/webpage.png
-#!date=2026-06-10 12:10
+#!date=2026-06-10 13:45
 #!loon_version=3.4.0(962)
 
 [URL Rewrite]
@@ -33,9 +33,9 @@ baidu_home = type=http-response, pattern=^https:\/\/(?:www|m)\.baidu\.com(\/|\/\
 baidu_zhidao = type=http-response, pattern=^https:\/\/zhidao\.baidu\.com\/(?:question|index|\?fr|\?word), script-path=https://rucu6.pages.dev/Scripts/webpage/baidu-zhidao.js, requires-body=true, timeout=10
 
 # 移花宫 //*.111107?.xyz
-yihuagong_hash_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107\d\.xyz\/hash\/(?:[a-fA-F0-9]{40}|[A-Z2-7]{32})\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
+yihuagong_hash_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107[1-6]\.xyz\/hash\/(?:[a-fA-F0-9]{40}|[A-Z2-7]{32})\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
 
-yihuagong_search_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107\d\.xyz\/search-.*-\d-\d-\d\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
+yihuagong_search_ads = type=http-response, pattern=^https:\/\/[a-z]{8}\.111107[1-6]\.xyz\/search-.*-\d-\d-\d\.html$, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
 
 # 黑料网 //18hlw.com, 8olbt.imsatcmn.cc
 18hlw_web_ads = type=http-response, pattern=^https:\/\/(?:18hlw\.com|8olbt\.imsatcmn\.cc)\/, script-path=https://rucu6.pages.dev/Scripts/webpage/myblockads.js, requires-body=true, timeout=10
