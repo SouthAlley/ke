@@ -1,64 +1,69 @@
-// 2026-06-15 12:45
+// 2026-06-15 16:50
 
 let body = $response.body;
 
-// 1. 移除特定的广告容器 (CSS 样式覆盖)
-// 匹配文件中的 .globalCookieBanner, .ad-placeholder 等类名并强制隐藏
+// 1. CSS 隐藏层：屏蔽 banner 和已知的广告容器
 const adSelectors = [
-    ".globalCookieBanner", "#cookieBanner", ".cookieBannerV1", 
-    "div[class*='ad-']", "div[id*='ad-']", ".adContainer", 
-    ".adWrapper", ".mg_ad_native", ".bottomNotification", 
-    ".premiumPromoBanner", ".ad-placeholder", ".ad-box", 
-    ".ad_wrapper", ".ads-container", ".video-wrapper-ad", ".ad-item"
+  "#cookieBanner",
+  ".ad-box",
+  ".ad-item",
+  ".ad-placeholder",
+  ".adContainer",
+  ".adWrapper",
+  ".ad_wrapper",
+  ".ads-container",
+  ".adsRemoveButtonWrapper",
+  ".adsbytrafficjunky",
+  ".bottomNav",
+  ".bottomNotification",
+  ".cookieBannerV1",
+  ".globalCookieBanner",
+  ".mg_ad_native",
+  ".middleAdContainer",
+  ".middleRemoveCTA",
+  ".premiumPromoBanner",
+  ".topRemoveCTA",
+  ".video-wrapper-ad",
+  "div[class*='ad-']",
+  "div[class*='watchpageAd']",
+  "div[id*='ad-']",
+  "ins.adsbytrafficjunky"
 ];
 
 const cssInjection = `
 <style>
-    ${adSelectors.join(", ")} {
-        display: none !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-        min-height: 0 !important;
-        border: none !important;
-    }
+  ${adSelectors.join(", ")} {
+    border: none !important;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    visibility: hidden !important;
+    width: 0 !important;
+  }
 </style>`;
 
-// 2. 注入 JS 逻辑拦截跳转
-// 劫持 location 对象及重写导航 API
+// 2. JS 拦截层：深度劫持跳转逻辑
 const jsInjection = `
 <script>
     (function() {
-        const blockUrl = (url) => typeof url === 'string' && url.includes('interstitial');
-        
-        // 劫持 location.href
-        const proto = Object.getPrototypeOf(window.location);
-        const originalHref = Object.getOwnPropertyDescriptor(proto, 'href');
-        Object.defineProperty(window.location, 'href', {
-            set: function(val) { if (!blockUrl(val)) originalHref.set.call(this, val); }
+        // 1. 变量屏蔽：在网页读取 TEXTLINKS 之前，将其锁定为 null 或空数组
+        Object.defineProperty(window, 'TEXTLINKS', {
+            get: function() { return []; },
+            set: function(val) { /* 忽略设置操作，使其无法被赋值 */ },
+            configurable: false
         });
-
-        // 拦截 assign 和 replace
-        window.location.assign = new Proxy(window.location.assign, {
-            apply: (t, self, args) => { if (!blockUrl(args[0])) return t.apply(self, args); }
-        });
-        window.location.replace = new Proxy(window.location.replace, {
-            apply: (t, self, args) => { if (!blockUrl(args[0])) return t.apply(self, args); }
-        });
-
-        // 阻止点击事件触发的跳转
-        document.addEventListener('click', (e) => {
-            let target = e.target.closest('a');
-            if (target && target.href && blockUrl(target.href)) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }, true);
     })();
 </script>`;
 
-// 插入到 <head> 之后
-body = body.replace(/(<head[^>]*>)/i, '$1' + cssInjection + jsInjection);
+// 3. 插入逻辑：将代码注入到 <head> 标签之后
+if (body && body.includes("<head")) {
+  body = body.replace(/(<head[^>]*>)/i, "$1" + cssInjection + jsInjection);
+}
 
 $done({ body });
