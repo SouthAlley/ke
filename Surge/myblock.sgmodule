@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-07-12 01:15
+#!date=2026-07-18 16:45
 #!loon_version=3.4.0(962)
 
 [Rule]
@@ -55,8 +55,9 @@ DOMAIN,adservice.sigmob.cn,REJECT,extended-matching
 # 工商银行
 DOMAIN-SUFFIX,mall.icbc.com.cn,REJECT,extended-matching
 DOMAIN,pageviewp.icbc.com.cn,REJECT,extended-matching
-AND,((DOMAIN-KEYWORD,mssdk,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
 AND,((DOMAIN-KEYWORD,-misc-,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
+AND,((DOMAIN-KEYWORD,adx-,extended-matching),(DOMAIN-SUFFIX,statisticslinks.com,extended-matching)),REJECT
+AND,((DOMAIN-KEYWORD,mssdk,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT,extended-matching
 DOMAIN-KEYWORD,ads.g.doubleclick,REJECT,extended-matching
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT,extended-matching
@@ -71,6 +72,7 @@ DOMAIN-SUFFIX,ads.vungle.com,REJECT,extended-matching
 DOMAIN-SUFFIX,adservice.google.com,REJECT,extended-matching
 DOMAIN-SUFFIX,adukwai.com,REJECT,extended-matching
 DOMAIN-SUFFIX,adx.hubcloud.com.cn,REJECT,extended-matching
+DOMAIN-SUFFIX,anythinktech.com,REJECT,extended-matching
 DOMAIN-SUFFIX,applovin.com,REJECT,extended-matching
 DOMAIN-SUFFIX,applvn.com,REJECT,extended-matching
 DOMAIN-SUFFIX,appsflyer.com,REJECT,extended-matching
@@ -115,6 +117,7 @@ DOMAIN,pagead2.googlesyndication.com,REJECT,extended-matching
 DOMAIN,s3.pstatp.com,REJECT,extended-matching
 DOMAIN,s3a.pstatp.com,REJECT,extended-matching
 DOMAIN,sdk.e.qq.com,REJECT,extended-matching
+DOMAIN,skan.singular.net,REJECT,extended-matching
 DOMAIN,tangram.e.qq.com,REJECT,extended-matching
 DOMAIN,tnc3-alisc1.zijieapi.com,REJECT,extended-matching
 DOMAIN,tosv.boe.byted.org,REJECT,extended-matching
