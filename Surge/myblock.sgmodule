@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-07-18 16:45
+#!date=2026-07-19 20:35
 #!loon_version=3.4.0(962)
 
 [Rule]
@@ -41,8 +41,6 @@ DOMAIN,lc.map.baidu.com,REJECT,extended-matching
 IP-CIDR,180.76.76.112/32,REJECT,no-resolve
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve
 AND,((DOMAIN-SUFFIX,pan.baidu.com,extended-matching),(PROTOCOL,TCP)),REJECT
-# 哔哩哔哩
-PROTOCOL,STUN,REJECT
 # 昌原云充
 DOMAIN,m.adyounger.com,REJECT,extended-matching
 # DNS 无响应
@@ -126,8 +124,6 @@ DOMAIN,ws.tapjoyads.com,REJECT,extended-matching
 DOMAIN,www.googleadservices.com,REJECT,extended-matching
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"Hema4iPhone*")),REJECT
 # httpdns
-DOMAIN-KEYWORD,httpdns.,REJECT,extended-matching
-DOMAIN-KEYWORD,httpdns-,REJECT,extended-matching
 DOMAIN,hdns.ksyun.com,REJECT,extended-matching
 # 驾考宝典
 DOMAIN,scs.kakamobi.cn,REJECT,extended-matching
