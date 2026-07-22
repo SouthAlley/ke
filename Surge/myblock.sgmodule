@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-07-19 20:35
+#!date=2026-07-22 10:25
 #!loon_version=3.4.0(962)
 
 [Rule]
@@ -183,6 +183,8 @@ DOMAIN-SUFFIX,shuzilm.cn,REJECT,extended-matching
 DOMAIN-KEYWORD,-adsystem.com,REJECT,extended-matching
 DOMAIN,ads.pubmatic.com,REJECT,extended-matching
 DOMAIN,id.hadron.ad.gt,REJECT,extended-matching
+# 特来电
+DOMAIN,target.ads.jihuoniao.com,REJECT,extended-matching
 # 腾讯
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching
