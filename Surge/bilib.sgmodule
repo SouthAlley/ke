@@ -2,7 +2,7 @@
 #!desc=没有广告的哔哩哔哩更值得干杯。
 #!author=RuCu6[https://github.com/RuCu6], kokoryh[https://github.com/kokoryh], 可莉🅥[https://gitlab.com/lodepuly/vpn_tool]
 #!icon=https://rucu6.pages.dev/Icons/app/bilibili.png
-#!date=2026-08-07 21:35
+#!date=2026-08-08 19:40
 #!loon_version=3.5.1(978)
 #!arguments=displayUpList:"auto",optimizeRequest:,purifyComment:true,sponsorBlock:
 #!arguments-desc=displayUpList: 显示 动态「最常访问」\n- auto: 仅当列表中存在直播状态时显示\n- show: 始终显示\n- hide: 始终隐藏\n\noptimizeRequest: 过滤「视频内」插播广告\n自动跳过视频内广告\n- true: 开启\n- false: 关闭\n\npurifyComment: 过滤「评论区」置顶广告\n-true: 开启\n- false: 关闭\n\nsponsorBlock: 空降助手
@@ -17,9 +17,6 @@ DOMAIN,app.biliapi.net,REJECT,extended-matching
 # 开屏广告
 URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
 URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-TINYGIF,extended-matching
-
-[Body Rewrite]
-http-response-jq #^https:\/\/app\.bilibili\.com\/x\/v2\/splash\/(show|event\/list2)\? '.data |= with_entries(if .key | IN("show", "event_list") then .value = [] else . end)'
 
 [Script]
 {{{sponsorBlock}}}移除视频内插播广告 = type=http-request, pattern=^https:\/\/(?:app\.bilibili\.com|grpc\.biliapi\.net)\/bilibili\.community\.service\.dm\.v1\.DM\/DmSegMobile$, script-path=https://rucu6.pages.dev/Scripts/bilibili/request.js, requires-body=true, binary-body-mode=true
