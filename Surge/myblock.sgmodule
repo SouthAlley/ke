@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-08-30 10:10
+#!date=2026-09-10 19:55
 #!loon_version=3.5.1(978)
 
 [Rule]
@@ -56,8 +56,9 @@ DOMAIN,pageviewp.icbc.com.cn,REJECT,extended-matching
 AND,((DOMAIN-KEYWORD,-misc-,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
 AND,((DOMAIN-KEYWORD,adx-,extended-matching),(DOMAIN-SUFFIX,statisticslinks.com,extended-matching)),REJECT
 AND,((DOMAIN-KEYWORD,mssdk,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
-DOMAIN-KEYWORD,-ad.,REJECT,extended-matching
 DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT,extended-matching
+DOMAIN-KEYWORD,-ad.,REJECT,extended-matching
+DOMAIN-KEYWORD,-ads-,REJECT,extended-matching
 DOMAIN-KEYWORD,ads.g.doubleclick,REJECT,extended-matching
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT,extended-matching
 DOMAIN-KEYWORD,open.douyin.com,REJECT,extended-matching
