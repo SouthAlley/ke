@@ -721,6 +721,10 @@
     <td>160</td>
     <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/KuGouYouth_remove_ads.lpx">酷狗概念版去广告</a></td>
   </tr>
+    <tr>
+    <td>160</td>
+    <td><a href="https://www.nsloon.com/openloon/import?plugin=https://kelee.one/Tool/Loon/Lpx/5EPlay_remove_ads.lpx">5e去广告</a></td>
+  </tr>
     <td></td>
     <td></td>
     <td></td>
