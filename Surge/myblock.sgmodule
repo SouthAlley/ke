@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-09-10 19:55
+#!date=2026-09-14 11:25
 #!loon_version=3.5.1(978)
 
 [Rule]
@@ -17,9 +17,12 @@ DOMAIN,ossgw.alicdn.com,REJECT,extended-matching
 IP-CIDR,203.107.1.1/24,REJECT,no-resolve
 # Apple
 DOMAIN,ca.iadsdk.apple.com,DIRECT
+DOMAIN-SUFFIX,ads.internal.unity3d.com,REJECT,extended-matching
+DOMAIN-SUFFIX,ads.prd.ie.internal.unity3d.com,REJECT,extended-matching
 DOMAIN-SUFFIX,advp.apple.com,REJECT,extended-matching
 DOMAIN-SUFFIX,iad-apple.com,REJECT,extended-matching
 DOMAIN-SUFFIX,iadsdk.apple.com,REJECT,extended-matching
+DOMAIN-SUFFIX,unityads.unity3d.com,REJECT,extended-matching
 DOMAIN,advertising.apple.com,REJECT,extended-matching
 DOMAIN,api-adservices.apple.com,REJECT,extended-matching
 DOMAIN,apple.comscoreresearch.com,REJECT,extended-matching
@@ -32,8 +35,16 @@ DOMAIN,iadworkbench.apple.com,REJECT,extended-matching
 DOMAIN,launch.apple.com,REJECT,extended-matching
 DOMAIN,qwapi.apple.com,REJECT,extended-matching
 # 百度
+DOMAIN-SUFFIX,duapps.com,REJECT,extended-matching
+DOMAIN-SUFFIX,cpro.baidu.com,REJECT,extended-matching
 DOMAIN-SUFFIX,pos.baidu.com,REJECT,extended-matching
+DOMAIN,afd.baidu.com,REJECT,extended-matching
+DOMAIN,als.baidu.com,REJECT,extended-matching
+DOMAIN,duclick.baidu.com,REJECT,extended-matching
 DOMAIN,mobads.baidu.com,REJECT,extended-matching
+DOMAIN,mobads-logs.baidu.com,REJECT,extended-matching
+DOMAIN,nadvideo2.baidu.com,REJECT,extended-matching
+DOMAIN,nsclick.baidu.com,REJECT,extended-matching
 # 百度地图
 DOMAIN,afd.baidu.com,REJECT,extended-matching
 DOMAIN,afdconf.baidu.com,REJECT,extended-matching
@@ -60,6 +71,7 @@ DOMAIN-KEYWORD,-ad-sign.byteimg.com,REJECT,extended-matching
 DOMAIN-KEYWORD,-ad.,REJECT,extended-matching
 DOMAIN-KEYWORD,-ads-,REJECT,extended-matching
 DOMAIN-KEYWORD,ads.g.doubleclick,REJECT,extended-matching
+DOMAIN-KEYWORD,adservice,REJECT,extended-matching
 DOMAIN-KEYWORD,asiad.byteactivity,REJECT,extended-matching
 DOMAIN-KEYWORD,open.douyin.com,REJECT,extended-matching
 DOMAIN-KEYWORD,pangolin-dsp-toutiao,REJECT,extended-matching
@@ -77,12 +89,17 @@ DOMAIN-SUFFIX,applovin.com,REJECT,extended-matching
 DOMAIN-SUFFIX,applvn.com,REJECT,extended-matching
 DOMAIN-SUFFIX,appsflyer.com,REJECT,extended-matching
 DOMAIN-SUFFIX,appsflyersdk.com,REJECT,extended-matching
+DOMAIN-SUFFIX,googleadservices.com,REJECT,extended-matching
+DOMAIN-SUFFIX,googleadsserving.cn,REJECT,extended-matching
+DOMAIN-SUFFIX,googlesyndication.com,REJECT,extended-matching
+DOMAIN-SUFFIX,googletagservices.com,REJECT,extended-matching
 DOMAIN-SUFFIX,kuaishouzt.com,REJECT,extended-matching
 DOMAIN-SUFFIX,mdt.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,miaozhen.com,REJECT,extended-matching
 DOMAIN-SUFFIX,ubixioe.com,REJECT,extended-matching
 DOMAIN-SUFFIX,unityads.unity3d.com,REJECT,extended-matching
 DOMAIN-SUFFIX,v.smtcdns.com,REJECT,extended-matching
+DOMAIN,ad.toutiao.com,REJECT,extended-matching
 DOMAIN,ad.zijieapi.com,REJECT,extended-matching
 DOMAIN,adapi.izuiyou.com,REJECT,extended-matching
 DOMAIN,adcdn6.tencentmusic.com,REJECT,extended-matching
@@ -95,6 +112,7 @@ DOMAIN,dm.bytedance.com,REJECT,extended-matching
 DOMAIN,dm.pstatp.com,REJECT,extended-matching
 DOMAIN,dm.toutiao.com,REJECT,extended-matching
 DOMAIN,dsp-x.jd.com,REJECT,extended-matching
+DOMAIN,dsp.toutiao.com,REJECT,extended-matching
 DOMAIN,et.tanx.com,REJECT,extended-matching
 DOMAIN,gdfp.gifshow.com,REJECT,extended-matching
 DOMAIN,images.pinduoduo.com,REJECT,extended-matching
@@ -124,7 +142,6 @@ DOMAIN,tnc3-alisc1.zijieapi.com,REJECT,extended-matching
 DOMAIN,tosv.boe.byted.org,REJECT,extended-matching
 DOMAIN,tosv.byted.org,REJECT,extended-matching
 DOMAIN,ws.tapjoyads.com,REJECT,extended-matching
-DOMAIN,www.googleadservices.com,REJECT,extended-matching
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"Hema4iPhone*")),REJECT
 # httpdns
 DOMAIN,hdns.ksyun.com,REJECT,extended-matching
@@ -142,15 +159,6 @@ DOMAIN,dns.jd.com,REJECT,extended-matching
 IP-CIDR,101.124.19.122/32,REJECT,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,REJECT,no-resolve
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?",REJECT,extended-matching
-# 酷狗音乐
-DOMAIN,adserviceretry.kglink.cn,DIRECT
-DOMAIN,ads.service.kugou.com,REJECT,extended-matching
-DOMAIN,adserviceretry.kugou.com,REJECT,extended-matching
-# 酷我音乐
-DOMAIN,ad.tencentmusic.com,REJECT,extended-matching
-DOMAIN,g.koowo.com,REJECT,extended-matching
-DOMAIN,mobilead.kuwo.cn,REJECT,extended-matching
-DOMAIN,rich.kuwo.cn,REJECT,extended-matching
 # 蓝奏云
 DOMAIN,statics.woozooo.com,REJECT,extended-matching
 # 猫眼
@@ -165,10 +173,12 @@ DOMAIN,adui.tg.meitu.com,REJECT,extended-matching
 # 墨迹天气
 DOMAIN,ad.api.moji.com,REJECT,extended-matching
 DOMAIN,adlaunch.moji.com,REJECT,extended-matching
+DOMAIN,ads.mojicdn.com,REJECT,extended-matching
 DOMAIN,fcard.api.moji.com,REJECT,extended-matching
 DOMAIN,mcmn.api.moji.com,REJECT,extended-matching
 DOMAIN,mcs.api.moji.com,REJECT,extended-matching
 DOMAIN,mmqn.api.moji.com,REJECT,extended-matching
+DOMAIN,v1.log.moji.com,REJECT,extended-matching
 DOMAIN,vdo.api.moji.com,REJECT,extended-matching
 DOMAIN,ztoken.uyunad.com,REJECT,extended-matching
 # 农商银行防代理检测
@@ -191,20 +201,26 @@ DOMAIN,target.ads.jihuoniao.com,REJECT,extended-matching
 # 腾讯
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching
-DOMAIN-SUFFIX,gdtimg.com,REJECT,extended-matching
-DOMAIN-SUFFIX,ugdtimg.com,REJECT,extended-matching
+DOMAIN-SUFFIX,e.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,gdt.qq.com,REJECT,extended-matching
+DOMAIN-SUFFIX,gdtimg.com,REJECT,extended-matching
 DOMAIN-SUFFIX,l.qq.com,REJECT,extended-matching
+DOMAIN-SUFFIX,ugdtimg.com,REJECT,extended-matching
 DOMAIN,ad.tencentvideo.com,REJECT,extended-matching
+DOMAIN,adsmind.apdcdn.tc.qq.com,REJECT,extended-matching
 DOMAIN,adsmind.gdtimg.com,REJECT,extended-matching
+DOMAIN,adsmind.tc.qq.com,REJECT,extended-matching
+DOMAIN,adsmind.ugdtimg.com,REJECT,extended-matching
 DOMAIN,adstats.tencentvideo.com,REJECT,extended-matching
 DOMAIN,huatuocode.huatuo.qq.com,REJECT,extended-matching
 #DOMAIN, info4.video.qq.com, REJECT
 DOMAIN,info6.video.qq.com,REJECT,extended-matching
 DOMAIN,ios.bugly.qq.com,REJECT,extended-matching
 DOMAIN,ios.video.mpush.qq.com,REJECT,extended-matching
+DOMAIN,livep.l.t002.ottcn.com,REJECT,extended-matching
 DOMAIN,otheve.beacon.qq.com,REJECT,extended-matching
 DOMAIN,pgdt.gtimg.cn,REJECT,extended-matching
+DOMAIN,pgdt.gtimg.com,REJECT,extended-matching
 DOMAIN,pgdt.ugdtimg.com,REJECT,extended-matching
 DOMAIN,pro.bugly.qq.com,REJECT,extended-matching
 DOMAIN,qzs.gdtimg.com,REJECT,extended-matching
@@ -212,12 +228,30 @@ DOMAIN,qzs.qq.com,REJECT,extended-matching
 DOMAIN,rmonitor.qq.com,REJECT,extended-matching
 DOMAIN,sdk.e.qq.com,REJECT,extended-matching
 DOMAIN,sdkconfig.video.qq.com,REJECT,extended-matching
+DOMAIN,splashqqlive.gtimg.com,REJECT,extended-matching
 DOMAIN,tmead.y.qq.com,REJECT,extended-matching
 DOMAIN,tmeadbak.y.qq.com,REJECT,extended-matching
 DOMAIN,tmeadcomm.y.qq.com,REJECT,extended-matching
 DOMAIN,tpns.qq.com,REJECT,extended-matching
+DOMAIN,wa.gtimg.com,REJECT,extended-matching
 DOMAIN,wup.imtt.qq.com,REJECT,extended-matching
 IP-CIDR,47.110.187.87/32,REJECT,no-resolve
+# 腾讯音乐
+DOMAIN,adserviceretry.kglink.cn,DIRECT
+DOMAIN,ad.tencentmusic.com,REJECT,extended-matching
+DOMAIN,ads.service.kugou.com,REJECT,extended-matching
+DOMAIN,adserviceretry.kugou.com,REJECT,extended-matching
+DOMAIN,adsfile.bssdlbig.kugou.com,REJECT,extended-matching
+DOMAIN,adsfilebssdlbig.tx.kugou.com,REJECT,extended-matching
+DOMAIN,adstats.tencentmusic.com,REJECT,extended-matching
+DOMAIN,g.koowo.com,REJECT,extended-matching
+DOMAIN,kgmobilestat.kugou.com,REJECT,extended-matching
+DOMAIN,kgmobilestatbak.kugou.com,REJECT,extended-matching
+DOMAIN,mobilead.kuwo.cn,REJECT,extended-matching
+DOMAIN,mobilelog.kugou.com,REJECT,extended-matching
+DOMAIN,rich.kuwo.cn,REJECT,extended-matching
+DOMAIN,splashimgbssdl.yun.kugou.com,REJECT,extended-matching
+DOMAIN,tmead.y.qq.com,REJECT,extended-matching
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"TmallGenie*")),REJECT
 # 万能钥匙
 DOMAIN-SUFFIX,ads.umeng.com,REJECT,extended-matching
