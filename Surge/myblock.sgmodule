@@ -2,7 +2,7 @@
 #!desc=Walalala 自用去广告大合集。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/myblockads.png
-#!date=2026-09-14 11:25
+#!date=2026-09-27 18:30
 #!loon_version=3.5.1(978)
 
 [Rule]
@@ -59,6 +59,8 @@ DOMAIN,adttrackingprd.hwwt8.com,REJECT,extended-matching
 # 懂车帝
 DOMAIN,1194c00001-0.m.ctrmi.cn,REJECT,extended-matching
 DOMAIN,api.edimob.com,REJECT,extended-matching
+# 豆瓣
+IP-CIDR,119.29.29.90/32,REJECT,no-resolve
 # 放松双眼
 DOMAIN,adservice.sigmob.cn,REJECT,extended-matching
 # 工商银行
@@ -106,6 +108,7 @@ DOMAIN,adcdn6.tencentmusic.com,REJECT,extended-matching
 DOMAIN,adsmartget.guangtuikeji.com,REJECT,extended-matching
 DOMAIN,adtracker.adfunlink.com,REJECT,extended-matching
 DOMAIN,alphas.adxvip.com,REJECT,extended-matching
+DOMAIN,baichuan-sdk.alicdn.com,REJECT,extended-matching
 DOMAIN,df.tanx.com,REJECT,extended-matching
 DOMAIN,dig.bdurl.net,REJECT,extended-matching
 DOMAIN,dm.bytedance.com,REJECT,extended-matching
