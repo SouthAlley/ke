@@ -6,7 +6,6 @@
 #!loon_version=3.5.1(978)
 
 [Rule]
-# 12306
 DOMAIN,ad.12306.cn,DIRECT
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"Alibaba*")),REJECT
 DOMAIN-SUFFIX,ut.taobao.com,REJECT,extended-matching
@@ -15,7 +14,6 @@ DOMAIN,ems.youku.com,REJECT,extended-matching
 DOMAIN,hudong.alicdn.com,REJECT,extended-matching
 DOMAIN,ossgw.alicdn.com,REJECT,extended-matching
 IP-CIDR,203.107.1.1/24,REJECT,no-resolve
-# Apple
 DOMAIN,ca.iadsdk.apple.com,DIRECT
 DOMAIN-SUFFIX,ads.internal.unity3d.com,REJECT,extended-matching
 DOMAIN-SUFFIX,ads.prd.ie.internal.unity3d.com,REJECT,extended-matching
@@ -34,7 +32,6 @@ DOMAIN,iadmoo.apple.com,REJECT,extended-matching
 DOMAIN,iadworkbench.apple.com,REJECT,extended-matching
 DOMAIN,launch.apple.com,REJECT,extended-matching
 DOMAIN,qwapi.apple.com,REJECT,extended-matching
-# 百度
 DOMAIN-SUFFIX,duapps.com,REJECT,extended-matching
 DOMAIN-SUFFIX,cpro.baidu.com,REJECT,extended-matching
 DOMAIN-SUFFIX,pos.baidu.com,REJECT,extended-matching
@@ -45,25 +42,18 @@ DOMAIN,mobads.baidu.com,REJECT,extended-matching
 DOMAIN,mobads-logs.baidu.com,REJECT,extended-matching
 DOMAIN,nadvideo2.baidu.com,REJECT,extended-matching
 DOMAIN,nsclick.baidu.com,REJECT,extended-matching
-# 百度地图
 DOMAIN,afd.baidu.com,REJECT,extended-matching
 DOMAIN,afdconf.baidu.com,REJECT,extended-matching
 DOMAIN,lc.map.baidu.com,REJECT,extended-matching
 IP-CIDR,180.76.76.112/32,REJECT,no-resolve
 IP-CIDR,180.76.76.200/32,REJECT,no-resolve
 AND,((DOMAIN-SUFFIX,pan.baidu.com,extended-matching),(PROTOCOL,TCP)),REJECT
-# 昌原云充
 DOMAIN,m.adyounger.com,REJECT,extended-matching
-# DNS 无响应
 DOMAIN,adttrackingprd.hwwt8.com,REJECT,extended-matching
-# 懂车帝
 DOMAIN,1194c00001-0.m.ctrmi.cn,REJECT,extended-matching
 DOMAIN,api.edimob.com,REJECT,extended-matching
-# 豆瓣
 IP-CIDR,119.29.29.90/32,REJECT,no-resolve
-# 放松双眼
 DOMAIN,adservice.sigmob.cn,REJECT,extended-matching
-# 工商银行
 DOMAIN-SUFFIX,mall.icbc.com.cn,REJECT,extended-matching
 DOMAIN,pageviewp.icbc.com.cn,REJECT,extended-matching
 AND,((DOMAIN-KEYWORD,-misc-,extended-matching),(DOMAIN-SUFFIX,zijieapi.com,extended-matching)),REJECT
@@ -136,7 +126,6 @@ DOMAIN,open.e.kuaishou.com,REJECT,extended-matching
 DOMAIN,open.kuaishou.com,REJECT,extended-matching
 DOMAIN,pagead2.googlesyndication-cn.com,REJECT,extended-matching
 DOMAIN,pagead2.googlesyndication.com,REJECT,extended-matching
-#DOMAIN, s3.pstatp.com, REJECT
 DOMAIN,s3a.pstatp.com,REJECT,extended-matching
 DOMAIN,sdk.e.qq.com,REJECT,extended-matching
 DOMAIN,skan.singular.net,REJECT,extended-matching
@@ -146,34 +135,24 @@ DOMAIN,tosv.boe.byted.org,REJECT,extended-matching
 DOMAIN,tosv.byted.org,REJECT,extended-matching
 DOMAIN,ws.tapjoyads.com,REJECT,extended-matching
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"Hema4iPhone*")),REJECT
-# httpdns
 DOMAIN,hdns.ksyun.com,REJECT,extended-matching
-# 驾考宝典
 DOMAIN,scs.kakamobi.cn,REJECT,extended-matching
-# 极简排班
 DOMAIN-SUFFIX,admobile.top,REJECT,extended-matching
 DOMAIN-SUFFIX,tianmu.mobi,REJECT,extended-matching
 DOMAIN,st.appsad.cn,REJECT,extended-matching
 DOMAIN,tracking.adx.xlqeai.com,REJECT,extended-matching
-# 建设银行
 DOMAIN-KEYWORD,adv.ccb.com,REJECT,extended-matching
-# 京东
 DOMAIN,dns.jd.com,REJECT,extended-matching
 IP-CIDR,101.124.19.122/32,REJECT,no-resolve
 IP-CIDR6,2402:db40:5100:1011::5/128,REJECT,no-resolve
 URL-REGEX,"^http:\/\/\w{32}\.jddebug\.com\/diagnose\?",REJECT,extended-matching
-# 蓝奏云
 DOMAIN,statics.woozooo.com,REJECT,extended-matching
-# 猫眼
 DOMAIN,catdot.dianping.com,REJECT,extended-matching
-# 美团
 DOMAIN,maplocatesdksnapshot.d.meituan.net,REJECT,extended-matching
 DOMAIN,metrics-picture.d.meituan.net,REJECT,extended-matching
 IP-CIDR,103.37.155.60/32,REJECT,no-resolve
-# 美颜相机
 DOMAIN,aaid.uyunad.com,REJECT,extended-matching
 DOMAIN,adui.tg.meitu.com,REJECT,extended-matching
-# 墨迹天气
 DOMAIN,ad.api.moji.com,REJECT,extended-matching
 DOMAIN,adlaunch.moji.com,REJECT,extended-matching
 DOMAIN,ads.mojicdn.com,REJECT,extended-matching
@@ -184,24 +163,16 @@ DOMAIN,mmqn.api.moji.com,REJECT,extended-matching
 DOMAIN,v1.log.moji.com,REJECT,extended-matching
 DOMAIN,vdo.api.moji.com,REJECT,extended-matching
 DOMAIN,ztoken.uyunad.com,REJECT,extended-matching
-# 农商银行防代理检测
 DOMAIN,msmp.abchina.com.cn,REJECT,extended-matching
-# Outlook
 DOMAIN-SUFFIX,adnxs-simple.com,REJECT,extended-matching
 DOMAIN-SUFFIX,adnxs.com,REJECT,extended-matching
-# 其他
 DOMAIN,affcpatrk.com,REJECT,extended-matching
-# 什么值得买
 DOMAIN,api.zuihuimai.com,REJECT,extended-matching
-# 数字联盟
 DOMAIN-SUFFIX,shuzilm.cn,REJECT,extended-matching
-# Speedtest
 DOMAIN-KEYWORD,-adsystem.com,REJECT,extended-matching
 DOMAIN,ads.pubmatic.com,REJECT,extended-matching
 DOMAIN,id.hadron.ad.gt,REJECT,extended-matching
-# 特来电
 DOMAIN,target.ads.jihuoniao.com,REJECT,extended-matching
-# 腾讯
 DOMAIN-KEYWORD,trace.qq.com,REJECT,extended-matching
 DOMAIN-KEYWORD,trace.video.qq.com,REJECT,extended-matching
 DOMAIN-SUFFIX,e.qq.com,REJECT,extended-matching
@@ -216,7 +187,6 @@ DOMAIN,adsmind.tc.qq.com,REJECT,extended-matching
 DOMAIN,adsmind.ugdtimg.com,REJECT,extended-matching
 DOMAIN,adstats.tencentvideo.com,REJECT,extended-matching
 DOMAIN,huatuocode.huatuo.qq.com,REJECT,extended-matching
-#DOMAIN, info4.video.qq.com, REJECT
 DOMAIN,info6.video.qq.com,REJECT,extended-matching
 DOMAIN,ios.bugly.qq.com,REJECT,extended-matching
 DOMAIN,ios.video.mpush.qq.com,REJECT,extended-matching
@@ -239,7 +209,6 @@ DOMAIN,tpns.qq.com,REJECT,extended-matching
 DOMAIN,wa.gtimg.com,REJECT,extended-matching
 DOMAIN,wup.imtt.qq.com,REJECT,extended-matching
 IP-CIDR,47.110.187.87/32,REJECT,no-resolve
-# 腾讯音乐
 DOMAIN,adserviceretry.kglink.cn,DIRECT
 DOMAIN,ad.tencentmusic.com,REJECT,extended-matching
 DOMAIN,ads.service.kugou.com,REJECT,extended-matching
@@ -256,24 +225,172 @@ DOMAIN,rich.kuwo.cn,REJECT,extended-matching
 DOMAIN,splashimgbssdl.yun.kugou.com,REJECT,extended-matching
 DOMAIN,tmead.y.qq.com,REJECT,extended-matching
 AND,((URL-REGEX,"^http:\/\/.+\/amdc\/mobileDispatch",extended-matching),(USER-AGENT,"TmallGenie*")),REJECT
-# 万能钥匙
 DOMAIN-SUFFIX,ads.umeng.com,REJECT,extended-matching
 DOMAIN-SUFFIX,aishuttler.com,REJECT,extended-matching
 DOMAIN-SUFFIX,wkanx.com,REJECT,extended-matching
-# 微信
 DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching
 DOMAIN,badjs.weixinbridge.com,REJECT,extended-matching
 DOMAIN,dns.weixin.qq.com.cn,REJECT,extended-matching
-# 移花宫
 DOMAIN-SUFFIX,vsdrwee.com,REJECT,extended-matching
 DOMAIN,carlinaframh.com,REJECT,extended-matching
 DOMAIN,tong.8888888888.bid,REJECT,extended-matching
 AND,((OR,((DOMAIN-KEYWORD,kc.,extended-matching),(DOMAIN-KEYWORD,kcc.,extended-matching),(DOMAIN-KEYWORD,kg.,extended-matching))),(DEST-PORT,8008)),REJECT
-# 云闪付 开屏广告
 DOMAIN,ads.95516.com,REJECT,extended-matching
 DOMAIN,switch.cup.com.cn,REJECT,extended-matching
-# Yandex
 DOMAIN,yandexmetrica.com,REJECT,extended-matching
+
+[Body Rewrite]
+http-response-jq (?i)^http:\/\/ad\.5tao5ai\.com\/common\/getReceipt\? 'delpaths([["payload","adInfo"]])'
+http-response-jq (?i)^https:\/\/www\.washpayer\.com\/common\/getReceipt 'delpaths([["payload","adInfo"]])'
+http-response-jq (?i)^https:\/\/mme\.api\.moji\.com\/json\/entrance\/list$ 'del(.entrance_region_res_list[] | select(.region_name == "皇冠区域" or .region_name == "banner区")) | .entrance_region_res_list[].entrance_res_list |= if . then map(select(.entrance_name | . != "墨迹钱包" and . != "墨圈")) else . end'
+http-response-jq (?i)^https:\/\/gql(-fed)?\.reddit\.com 'jq-path=https://rucu6.pages.dev/JQLang/reddit.jq'
+http-response-jq (?i)^https:\/\/api\.xiachufang\.com\/v2\/homepage\/paged_waterfall_recommendations\.json '.multiplex_cells |= map(select(.recommendation_cell.label != "广告"))'
+http-response-jq (?i)^https:\/\/api\.m\.mi\.com\/v1\/order\/expressView 'delpaths([["data","bottom","ad_info"]])'
+http-response-jq (?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/act\/mishopSearch\/mainSearch 'if ((getpath(["data"]) // {}) | has("recProductList")) then (setpath(["data","recProductList"]; "[]")) else . end'
+http-response-jq (?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/mf\/home\/v1\/index 'delpaths([["data","floors",0,"data","left_icon_config"]])'
+http-response-jq (?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/mf\/home\/v1\/index 'delpaths([["data","floors",0,"data","right_icon_config"]])'
+http-response-jq (?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/mf\/usercenter\/personalHome 'delpaths([["data","carouselAD"]])'
+http-response-jq (?i)^https:\/\/xiaomishop\.retail\.mi\.com\/mtop\/xiaomishop\/product\/info 'delpaths([["data","carouselAdInfo"]])'
+http-response-jq (?i)^https:\/\/xiaomishop\.retail\.mi\.com\/mtop\/xiaomishop\/product\/info 'delpaths([["data","product","floatWindow"]])'
+http-response-jq (?i)^https:\/\/conf-m-ssl\.xunlei\.com\/external\/[0-9-a-z]+\? 'delpaths([["values","me_config","common_service_list"]])'
+
+[Map Local]
+(?i)^https:\/\/list-app-m\.i4\.cn\/(?:adclickcb|getHotSearchList|getopfstadinfo)\.xhtml data-type=text data="" status-code=404
+
+(?i)^https:\/\/api\.alipan\.com\/adrive\/v1\/file\/getTopFolders data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/member\.alipan\.com\/v2\/activity\/sign_in_luckyBottle data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.fliggy\.crm\.screen\.(?:allresource|predict) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alibaba\.advertisementservice\.getadv data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimama\.etao\.config\.query\/.+?etao_advertise data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.alimusic\.common\.mobileservice\.startinit data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.etao\.noah\.query\/.+tao_splash data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.film\.mtopadvertiseapi\.queryadvertise data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.o2o\.ad\.gateway\.get data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs\.m\.taobao\.com\/gw\/mtop\.trip\.activity\.querytmsresources data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.cainiao\.adx\.flyad\.getad data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.relationrecommend\.pailitaorecommend\.recommend data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:volvo\.secondfloor\.getconfig|shot\.resources\.load|wireless\.home\.(newface|splash)\.awesome\.get) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/(?:gw|heic)\.alicdn\.com\/imgextra\/i\d\/\d*\/?[\w!]+-\d-(?:octopus|tps)-(?:1080|1125)-\d{4}\.(?:jpg|png)_(?:1\d{3}|9\d{2})x(?:\d|1\d{3}|9\d{2})q[59]0 data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/pan\.baidu\.com\/(?:act\/|aipic\/|aisearch\/|api\/getsyscfg\?|buy\/adx?\/|rest\/) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/www\.washpayer\.com\/(?:ad\/getBannerAd|ad\/user-adword|user\/getBannerList) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/oneapph5\.dongfeng-nissan\.com\.cn\/mb-gw\/(?:dndc-gateway\/nissan\/platform\/api\/advertisement\/app\/ad-content|ly-mp-iov-forwarding-service\/iov\/login\/advertapp\/listByCarSeries) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/api\.douban\.com\/v2\/app_ads\/splash\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/(?:img|qnmob)3\.doubanio\.com\/view\/dale-online\/dale_ad\/public\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/hfapp-service\.qweather\.net\/v2\.0\/app\/ad\/list\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/acs-m\.freshippo\.com\/gw\/mtop\.wdk\.render\.querysinglepage\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^http:\/\/image1\.ccb\.com\/newsinfo\/eBranch\/check\/(?:nf\/newfin\/activity|po\/poortheme\/activity)\/\w+\.png data-type=text data="" status-code=404
+
+(?i)^https:\/\/gab\.122\.gov\.cn\/eapp\/m\/sysquery\/adver data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/api\.coolapk\.com\/v6\/search\?.*type=hotSearch data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.jpe?g\?imageMogr2\/quality\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/p0\.pipi\.cn\/(?:adAdmin|mediaplus\/maoyantong_ads_fe)\/\w+\.(?:jpe?g|png)\?imageMogr2\/thumbnail\/(?:860x0|880x0|!165x165|!1049x1169) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/sns\.api\.moji\.com\/(?:forum|user\/dynamic_v[89]\/json)\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^http:\/\/app-cdn\.2q10\.com\/app\/ical\/honored\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^http:\/\/wmapi\.meituan\.com\/api\/v7\/(?:loadInfo|openscreen|startpicture) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/flowplus\.meituan\.net\/v1\/mss_\w+\/linglong\/\d+\.jpg data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/img\.meituan\.net\/bizad\/bizad_brandCpt_\d+\.jpg data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf_\d+\.json data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(?:brandcpt-vedio|waimai-alita)\/\w+\.zip$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/nebulafile\/\w+ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/home\.mi\.com\/cgi-op\/api\/v1\/recommendation\/(?:banner|carousel\/banners|myTab|openingBanner) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/a\.cpiccdn\.com\/config-center\/api\/configfile\/images\/\d{8}\/\d{13}_(?:(?:630|945|1035)_\d{2,4}|123_48|136_136|207_210|408_408|750_750|1125_\d{4})\.(gif|jpg|png)$ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/osg-service\.sgcc\.com\.cn:18600\/emss-pfa-appset-front\/bootpageoutter\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/api\.xiachufang\.com\/v2\/ad\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/mp\.weixin\.qq\.com\/mp\/(?:cps_product_info|getappmsgad|getbizbanner|jsmonitor|masonryfeed|relatedarticle|relatedsearchword) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/marketing-aibox\.v\.mitvos\.com\/(?:advertise|payGuide\/halfScreenMulti)\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/api\.m\.mi\.com\/(?:v1\/(?:app\/popup_info|home\/page_feed|home\/recommendBlank|misearch\/search_input|product\/recommendv2)|v2\/search\/search_default) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/mf\/(?:cart|home|personal)\/recommend data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/(?:act\/mishopSearch\/searchInput|mf\/home\/v1\/feed) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/shop-api\.retail\.mi\.com\/mtop\/navi\/(?:rec\/merge\/|skywheel\/(?:homePage\/bottomFloatLayer|mishop\/splash|shop\/resourceAms|ucenter\/pendant|ucenter\/popup)) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/xiaomishop\.retail\.mi\.com\/mtop\/xiaomishop\/product\/compose data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/gateway\.sccncdn\.com\/app\/v2\/apiV2\/advertisement\/marke\/list\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/gateway\.starcharge\.com\/app\/(?:api\/advertisement|v2\/apiV2\/advertisement\/marke)\/list data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/api-shoulei-ssl\.xunlei\.com\/flowhub\/v1\/slots:batchGet data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/login-service\.mobile-bank\.psbc\.com\/sn10\/api\/public\/v1\/(?:getStartUpAdvPicture|qryPopInfo)\/ data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+(?i)^https:\/\/wallet\.95516\.com(:10533)?\/s\/wl\/icon\/large\/1 data-type=text data="" status-code=404
+
+[Script]
+12306_splash = type=http-request, pattern=(?i)^https:\/\/ad\.12306\.cn\/ad\/ser\/getAdList$, script-path=https://rucu6.pages.dev/Scripts/12306.js, requires-body=true
+
+12306_ads = type=http-request, pattern=(?i)^https:\/\/mobile\.12306\.cn\/otsmobile\/app\/mgs\/mgw\.htm$, script-path=https://rucu6.pages.dev/Scripts/header.js
+
+aliyun_mine = type=http-response, pattern=(?i)^https:\/\/(biz)?api\.alipan\.com\/apps\/v\d\/users?\/home\/(?:news|widgets), script-path=https://rucu6.pages.dev/Scripts/adrive.js, requires-body=true
+
+aliyun_board = type=http-response, pattern=(?i)^https:\/\/member\.alipan\.com\/v1\/users\/onboard_list, script-path=https://rucu6.pages.dev/Scripts/adrive.js, requires-body=true
+
+taobao_1 = type=http-response, pattern=(?i)^https:\/\/guide-acs\.m\.taobao\.com\/gw\/mtop\.taobao\.(?:cloudvideo\.video\.query|wireless\.home\.splash\.awesome\.get), script-path=https://rucu6.pages.dev/Scripts/myblockads.js, requires-body=true
+
+taobao_2 = type=http-response, pattern=(?i)^https:\/\/poplayer\.template\.alibaba\.com\/\w+\.json, script-path=https://rucu6.pages.dev/Scripts/myblockads.js, requires-body=true
+
+caoliu = type=http-response, pattern=(?i)^https:\/\/2023\.redircdn\.com\/web\/mob_post\.js\?, script-path=https://rucu6.pages.dev/Scripts/myblockads.js, requires-body=true
+
+changyuan = type=http-response, pattern=(?i)^https:\/\/www\.washpayer\.com\/user\/message\/equipmentPara\?, script-path=https://rucu6.pages.dev/Scripts/changyuan.js, requires-body=true
+
+coolapk = type=http-response, pattern=(?i)^https:\/\/api\.coolapk\.com\/v6\/(?:feed\/detail|feed\/replyList|page\/dataList|main\/dataList|main\/indexV8|main\/init), script-path=https://rucu6.pages.dev/Scripts/coolapk.js, requires-body=true
+
+kg_gateway = type=http-response, pattern=(?i)^https:\/\/gateway\.kugou\.com\/(?:adp\/ad\/v1\/mine_top_banner|ads\.gateway\/v2\/home_card), script-path=https://rucu6.pages.dev/Scripts/kugou.js, requires-body=true
+
+kg_linkcn = type=http-response, pattern=(?i)^https?:\/\/adserviceretry\.kglink\.cn\/v\d\/mobile\w+, script-path=https://rucu6.pages.dev/Scripts/kugou.js, requires-body=true
+
+wechat = type=http-response, pattern=(?i)^https\:\/\/(?:weixin110\.qq|security\.wechat)\.com\/cgi-bin\/mmspamsupport-bin\/newredirectconfirmcgi\?, script-path=https://rucu6.pages.dev/Scripts/wechat.js, requires-body=true
+
+mi_mall = type=http-response, pattern=(?i)^https:\/\/api\.m\.mi\.com\/v1\/app\/start, script-path=https://rucu6.pages.dev/Scripts/myblockads.js, requires-body=true
+
+thunder = type=http-response, pattern=(?i)^https:\/\/api-gateway-pan\.xunlei\.com\/content\/v1\/aggregate\/info\?, script-path=https://rucu6.pages.dev/Scripts/myblockads.js, requires-body=true
+
+abchina = type=http-request, pattern=(?i)^https:\/\/mobilepaas\.abchina\.com\.cn:441\/mgw\.htm$, script-path=https://rucu6.pages.dev/Scripts/header.js
+
+cloud139_1 = type=http-response, pattern=(?i)^https:\/\/ad\.mcloud\.139\.com\/advertapi\/adv-filter\/, script-path=https://rucu6.pages.dev/Scripts/cloud139.js, requires-body=true
+
+cloud139_2 = type=http-response, pattern=(?i)^https:\/\/jzts\.cmpassport\.com\/personalized\/getPushContent, script-path=https://rucu6.pages.dev/Scripts/cloud139.js, requires-body=true
 
 [MITM]
 hostname = %APPEND% ad.12306.cn, mobile.12306.cn, list-app-m.i4.cn, *api.alipan.com, member.alipan.com, acs.m.taobao.com, gw.alicdn.com, heic.alicdn.com, guide-acs.m.taobao.com, poplayer.template.alibaba.com, pan.baidu.com, 2023.redircdn.com, www.washpayer.com, oneapph5.dongfeng-nissan.com.cn, api.douban.com, img3.doubanio.com, qnmob3.doubanio.com, image.mybank.icbc.com.cn, hfapp-service.qweather.net, acs-m.freshippo.com, gab.122.gov.cn, api.coolapk.com, adserviceretry.kglink.cn, gateway.kugou.com, p0.pipi.cn, mme.api.moji.com, sns.api.moji.com, flowplus.meituan.net, img.meituan.net, s3plus.meituan.net, home.mi.com, gql.reddit.com, gql-fed.reddit.com, a.cpiccdn.com, osg-service.sgcc.com.cn, api.xiachufang.com, mp.weixin.qq.com, weixin110.qq.com, security.wechat.com, marketing-aibox.v.mitvos.com, api.m.mi.com, shop-api.retail.mi.com, xiaomishop.retail.mi.com, gateway.sccncdn.com, gateway.starcharge.com, api-gateway-pan.xunlei.com, api-shoulei-ssl.xunlei.com, conf-m-ssl.xunlei.com, login-service.mobile-bank.psbc.com, wallet.95516.com, mobilepaas.abchina.com.cn, ad.mcloud.139.com, jzts.cmpassport.com
