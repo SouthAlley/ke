@@ -2,7 +2,7 @@
 #!desc=移除网页广告。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/webpage.png
-#!date=2026-10-30 08:50
+#!date=2026-11-02 13:30
 #!loon_version=3.5.1(978)
 
 [Rule]
@@ -34,9 +34,10 @@ response if ${url} ~= /https:\/\/(rule\.)?kelee\.one\//i then response.header.se
 request if ${url} ~= /^https:\/\/exhentai\.org/i then redirect(307, "https://e-hentai.org")
 
 # PornHub (https://cn.pornhub.com/) //*.pornhub.com
-request if ${url} ~= /^(https:\/\/cn\.pornhub\.com\/view_video\.php\?viewkey=[^&]+)&.*$/i as urlMatch then redirect(302, "${urlMatch.1}")
+request if ${url} ~= /^https:\/\/www\.pornhub\.com\/\?utm/i then reject(404)
 request if ${url} ~= /^https:\/\/www\.pornhub\.com\//i then redirect(302, "https://cn.pornhub.com/")
 request if ${url} ~= /^https:\/\/cn\.pornhub\.com\/(?:interstitial|_xa\/ads)/i then reject_dict(200)
+request if ${url} ~= /^(https:\/\/cn\.pornhub\.com\/view_video\.php\?viewkey=[^&]+)&.*$/i as urlMatch then redirect(302, "${urlMatch.1}")
 
 [Script]
 # ======= 普通网页 ======= #
