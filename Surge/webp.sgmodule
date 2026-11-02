@@ -2,7 +2,7 @@
 #!desc=移除网页广告。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/webpage.png
-#!date=2026-10-30 08:50
+#!date=2026-11-02 13:30
 #!loon_version=3.5.1(978)
 
 [URL Rewrite]
@@ -20,6 +20,8 @@ http-response (?i)https:\/\/(rule\.)?kelee\.one\/ header-add "content-type" "tex
 
 [Map Local]
 (?i)^https:\/\/asserts\.avple\.tv\/file\/avple-images\/ad\.js data-type=text data="" status-code=404
+
+(?i)^https:\/\/www\.pornhub\.com\/\?(?:[^#?&]+&)*utm data-type=text data="" status-code=404
 
 (?i)^https:\/\/cn\.pornhub\.com\/(?:interstitial|_xa\/ads) data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
