@@ -2,7 +2,7 @@
 #!desc=移除网页广告。
 #!author=RuCu6[https://github.com/RuCu6]
 #!icon=https://rucu6.pages.dev/Icons/app/webpage.png
-#!date=2026-11-02 14:15
+#!date=2026-11-18 10:28
 #!loon_version=3.5.1(978)
 
 [Rule]
@@ -82,5 +82,7 @@ response if ${url} ~= /^https:\/\/missav\.(?:ai|fans|ws)\/(?!favicon)(?!(build|f
 # PornHub //*.pornhub.com
 response if ${url} ~= /^https:\/\/cn\.pornhub\.com\/(?!api\/|front\/|get-allowed-cookies\?|manifest\.|svvt\/|user\/|utils\/)/i then script("https://rucu6.pages.dev/Scripts/webpage/pornhub.js") with tag="pornhub_web_ads", requires_body=true, binary_body_mode=false
 
+# wumaobi //wumaobi.com
+response if ${url} ~= /^https:\/\/(?:baihubi\.com|baihuse\.com|paipancon\.com|wumaob\.com|wumaobi\.com|wumaobi\.org)\//i then script("https://rucu6.pages.dev/Scripts/webpage/myblockads.js") with tag="wumaobi_web_ads", requires_body=true, binary_body_mode=false
 [MITM]
-hostname=*.google.cn, asserts.avple.tv, kelee.one, rule.kelee.one, e-hentai.org, exhentai.org, *.pornhub.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, www.hgeme.com, www.xn--wcv59z.com, yhg007.com, *.111107?.xyz, 18hlw.com, 8olbt.imsatcmn.cc, javranking.cc, miniapp2.52ywy.com, *.zimuquan*.top, *.zimuquan*.uk, *.zimuquan*.com, hanime1.me, javdb.com, missav.ai, missav.fans, missav.ws
+hostname=*.google.cn, asserts.avple.tv, kelee.one, rule.kelee.one, e-hentai.org, exhentai.org, *.pornhub.com, boxer.baidu.com, m.baidu.com, www.baidu.com, zhidao.baidu.com, www.hgeme.com, www.xn--wcv59z.com, yhg007.com, *.111107?.xyz, 18hlw.com, 8olbt.imsatcmn.cc, javranking.cc, miniapp2.52ywy.com, *.zimuquan*.top, *.zimuquan*.uk, *.zimuquan*.com, hanime1.me, javdb.com, missav.ai, missav.fans, missav.ws, wumaobi.com, paipancon.com, baihuse.com, wumaob.com, wumaobi.org, baihubi.com
